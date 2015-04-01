@@ -1,5 +1,5 @@
 /*
-    Opis: Pretraga grava u dubinu
+    Opis: Pretraga grafa u dubinu
     Slozenost: O(V + E)
 */
 
