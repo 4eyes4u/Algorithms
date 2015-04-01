@@ -9,6 +9,7 @@ using namespace std;
 
 const ll MOD=1e9+7; //Modul
 
+//stepenovanje kvadriranjem
 ll modPow (ll num, ll pow, ll mod)
 {
     ll ret=1;
@@ -24,6 +25,7 @@ ll modPow (ll num, ll pow, ll mod)
     return ret;
 }
 
+//modularni inverz
 ll modInv (ll num, ll mod)
 {
     return mod_pow (num, mod-2, mod);
