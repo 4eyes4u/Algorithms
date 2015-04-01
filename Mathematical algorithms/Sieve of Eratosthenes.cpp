@@ -1,9 +1,11 @@
+/*
+    Opis: Nalazenje prostih brojeva do broja A
+    Slozenost: O(N log log N)
+*/
+
 #include <bits/stdc++.h>
 typedef long long int ll;
 using namespace std;
-
-//Nalazenje prostih brojeva do broja A
-//Slozenost: O(N log log N)
 
 const int N=1e5+10;
 bool mark[N];
