@@ -28,7 +28,7 @@ ll modPow (ll num, ll pow, ll mod)
 //modularni inverz
 ll modInv (ll num, ll mod)
 {
-    return mod_pow (num, mod-2, mod);
+    return modPow (num, mod-2, mod);
 }
 
 //deljenje po modulu
