@@ -1,3 +1,8 @@
+/*
+    Opis: Pretraga grafa u sirinu
+    Slozenost: O(V + E)
+*/
+
 #include <bits/stdc++.h>
 typedef long long int ll;
 using namespace std;
