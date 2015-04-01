@@ -34,6 +34,5 @@ void bfs (int start)
 int main()
 {
 
-
 	return 0;
 }
