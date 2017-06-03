@@ -1,9 +1,15 @@
 /*
 Data structure: DSU
-Complexities:
-    Make Set O(1)
+Time complexities:
+    Init O(n)
     Find Parent O(logn)
     Unite O(logn)
+Memory complexity: O(n)
+
+[where n is number of sets]
+
+* * *
+Without 'union by rank' heuristic.
 */
 
 #include <bits/stdc++.h>
@@ -26,8 +32,7 @@ int f (int x)
 
 void unite (int x, int y)
 {
-    x=f(x), y=f(y);
-    dsu[x]=y;
+    dsu[f(x)]=f(y);
 }
 
 int main()

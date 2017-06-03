@@ -1,13 +1,7 @@
 /*
 Data structure: D-ary heap
-Complexities:
-    Insert O(log_d(n)) worst case
-    Find Minimum O(1) worst case
-    Delete Minimum O(d*log_d(n)) worst case
-    Delete O(d*log_d(n)) worst case
-    Decrease Key (log_d(n)) worst cast
-
-    [where n is number of nodes]
+Time complexity: O(logn) per operaton [where n is number of nodes]
+Memory complexity: O(n)
 */
 
 #include <bits/stdc++.h>

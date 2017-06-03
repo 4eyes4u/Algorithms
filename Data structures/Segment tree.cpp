@@ -1,13 +1,7 @@
 /*
 Data structure: Segment tree
-Time complexities:
-    Init O(n*logn)
-    Update O(logn)
-    Query O(logn)
-Memory complexity:
-    O(n*logn)
-
-    [where n is size of array that segment tree is built on]
+Time complexity: O(logn) per operaton [where n is size of array that segment tree is built on]
+Memory complexity: O(n)
 
 * * *
 Merge operation is maximum.
