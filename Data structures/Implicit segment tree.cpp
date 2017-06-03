@@ -19,7 +19,7 @@ struct Node
     Node(int _val, Node *_l, Node *_r): val(_val), l(_l), r(_r) {}
 };
 
-const int BOUND=1e9;
+const int u=1e9;
 
 void update (Node *v, int left, int right, int x, int val)
 {
@@ -57,8 +57,8 @@ int main()
 {
     Node *root=new Node();
 
-    update (root, 1, BOUND, 12345678, 100);
-    printf ("%d\n", query(root, 1, BOUND, 1, BOUND));
+    update (root, 1, u, 12345678, 100);
+    printf ("%d\n", query(root, 1, u, 1, u));
 
     return 0;
 }

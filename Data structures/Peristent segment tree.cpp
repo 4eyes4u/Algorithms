@@ -12,7 +12,7 @@ Merge operation is maximum on interval.
 using namespace std;
 
 const int N=1e5+10;
-const int BOUND=1e9;
+const int u=1e9;
 
 struct Node
 {
