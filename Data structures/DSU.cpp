@@ -1,12 +1,10 @@
 /*
 Data structure: DSU
-Time complexities:
-    Init O(n)
-    Find Parent O(logn)
-    Unite O(logn)
-Memory complexity: O(n)
-
-[where n is number of sets]
+Time complexity:
+    Init O(n) [where n is number of sets]
+    Find Parent O(logn) [where n is number of sets]
+    Unite O(logn) [where n is number of sets]
+Memory complexity: O(n) [where n is number of sets]
 
 * * *
 Without 'union by rank' heuristic.
