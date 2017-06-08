@@ -36,14 +36,15 @@ void update (Node *v, Node *state, int left, int right, int x, int val)
     {
         v->l=new Node();
         update (v->l, ((state!=NULL)?state->l:NULL), left, mid, x, val);
-        v->val=max(v->val, (v->l)->val);
     }
     else
     {
         v->r=new Node();
         update (v->r, ((state!=NULL)?state->r:NULL), mid+1, right, x, val);
-        v->val=max(v->val, (v->r)->val);
     }
+
+    if (v->l) v->val=max(v->val, (v->l)->val);
+    if (v->r) v->val=max(v->val, (v->r)->val);
 }
 
 int query (Node *v, int left, int right, int l, int r)
