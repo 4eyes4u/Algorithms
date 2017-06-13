@@ -1,6 +1,6 @@
 /*
   Algorithm: Exponential by sqaring & modular inverse
-  Complexity: O(logn)[where n is given number]
+  Complexity: O(logn) [where n is given number]
 
 * * *
 For calculating modular inverse moduo has to be prime number.
