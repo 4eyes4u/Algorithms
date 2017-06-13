@@ -10,10 +10,10 @@ For calculating modular inverse moduo has to be prime number.
 using namespace std;
 
 long long mod_pow (long long x, long long pw, long long mod) {
-  long long ret=1;
+  long long ret = 1;
   while (pw) {
     if (pw & 1) ret = (ret * x) % mod;
-    pw>>=1;
+    pw >>= 1;
     x = (x * x) % mod;
   }
   return ret;
