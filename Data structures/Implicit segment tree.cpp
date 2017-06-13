@@ -2,7 +2,6 @@
 Data structure: Implicit segment tree
 Time complexity: O(logu) per query [where u is size of universe U]
 Memory complexity: O(n*logu) [where n is number of added number and u is size of universe U]
-
 * * *
 Merge operation is maximum on interval.
 */
@@ -33,14 +32,15 @@ void update (Node *v, int left, int right, int x, int val)
     {
         if (v->l==NULL) v->l=new Node();
         update (v->l, left, mid, x, val);
-        v->val=max(v->val, (v->l)->val);
     }
     else
     {
         if (v->r==NULL) v->r=new Node();
         update (v->r, mid+1, right, x, val);
-        v->val=max(v->val, (v->r)->val);
     }
+
+    if (v->l) v->val=max(v->val, (v->l)->val);
+    if (v->r) v->val=max(v->val, (v->r)->val);
 }
 
 int query (Node *v, int left, int right, int l, int r)
@@ -62,4 +62,3 @@ int main()
 
     return 0;
 }
-
