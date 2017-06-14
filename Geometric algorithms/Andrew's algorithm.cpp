@@ -1,7 +1,7 @@
 /*
    Algorithm: Andrew's monotone chain convex hull algorithm
    Complexity: O(n*logn) [where n is number of points]
- */
+*/
 
 #include <bits/stdc++.h>
 #define x first
