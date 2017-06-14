@@ -1,6 +1,7 @@
 /*
   Data structure: Monotone queue
-  Complexity: O(1) amortized per operation
+  Time complexity: O(1) amortized per operation
+  Memory complexity: O(n) [where n is number of elements in queue]
 
 * * *
 RMQ operation is minimum.
