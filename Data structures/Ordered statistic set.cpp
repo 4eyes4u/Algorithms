@@ -3,8 +3,8 @@
   Complexity: O(logn) per operation [where n is number of elements in set]
 
 * * *
-set.order_of_key -- returs order of given key that does not have to be in set.
-set.find_by_order -- returns iterator to the element that is on given position in sorted array of keys.
+set.order_of_key -- returns order of given key that does not have to be in set.
+set.find_by_order -- returns iterator of element that is on given position in sorted array of keys.
 */
 
 #include <bits/stdc++.h>
