@@ -1,6 +1,6 @@
 /*
-Algorithm: Topological sort
-Complexity: O(n) [where n is number of nodes in the graph]
+    Algorithm: Topological sort
+    Complexity: O(n) [where n is number of nodes in the graph]
 */
 
 #include <bits/stdc++.h>
