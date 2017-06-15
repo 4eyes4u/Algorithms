@@ -1,7 +1,8 @@
 /*
-Data structure: Implicit segment tree
-Time complexity: O(logu) per query [where u is size of universe U]
-Memory complexity: O(n*logu) [where n is number of added number and u is size of universe U]
+  Data structure: Implicit segment tree
+  Time complexity: O(logu) per query [where u is size of universe U]
+  Memory complexity: O(n*logu) [where n is number of added number and u is size of universe U]
+
 * * *
 Merge operation is maximum on interval.
 */
