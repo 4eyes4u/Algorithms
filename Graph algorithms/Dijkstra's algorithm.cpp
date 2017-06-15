@@ -1,6 +1,6 @@
 /*
-Algorithm: Dijkstra's algorithm
-Complexity O((m+n)*logn) [where n is number of nodes and m number of edges in the graph]
+    Algorithm: Dijkstra's algorithm
+    Complexity O((m+n)*logn) [where n is number of nodes and m number of edges in the graph]
 */
 
 #include <bits/stdc++.h>
