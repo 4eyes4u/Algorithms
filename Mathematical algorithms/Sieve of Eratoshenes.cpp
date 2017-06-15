@@ -1,6 +1,6 @@
 /*
-Algorithm: Sieve of Eratoshenes
-Complexity: O(n*loglogn) [where n is upper bound]
+    Algorithm: Sieve of Eratoshenes
+    Complexity: O(n*loglogn) [where n is upper bound]
 
 * * *
 For every number calculating smallest prime that divides it.
