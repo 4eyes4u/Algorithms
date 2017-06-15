@@ -1,6 +1,6 @@
 /*
-Algorithm: Tarjan's algorithm for finding bridges in a graph
-Complexity: O(n+m) [where n is number of nodes and m number of edges in the graph]
+    Algorithm: Tarjan's algorithm for finding bridges in a graph
+    Complexity: O(n+m) [where n is number of nodes and m number of edges in the graph]
 
 * * *
 Graph MUST NOT be a multigraph.
