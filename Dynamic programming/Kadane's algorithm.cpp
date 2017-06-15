@@ -6,7 +6,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int Kadane (int *a, int n, long long *dp)
+long long Kadane (int *a, int n, long long *dp)
 {
   dp[1]=a[1];
 
