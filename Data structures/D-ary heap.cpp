@@ -1,7 +1,7 @@
 /*
-Data structure: D-ary heap
-Time complexity: O(logn) per operaton [where n is number of nodes]
-Memory complexity: O(n)
+  Data structure: D-ary heap
+  Time complexity: O(logn) per operaton [where n is number of nodes]
+  Memory complexity: O(n)
 */
 
 #include <bits/stdc++.h>

@@ -1,7 +1,7 @@
 /*
-Data structure: Fenwick tree (Binary indexed tree)
-Time complexity: O(logn) per operation [where n is range]
-Memory complexity: O(n) [where n is size of the tree]
+  Data structure: Fenwick tree (Binary indexed tree)
+  Time complexity: O(logn) per operation [where n is range]
+  Memory complexity: O(n) [where n is size of the tree]
 */
 
 #include <bits/stdc++.h>

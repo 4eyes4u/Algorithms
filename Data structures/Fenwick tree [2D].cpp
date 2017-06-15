@@ -1,7 +1,7 @@
 /*
-Data structure: Fenwick tree [2D]
-Time complexity: O(logn*logm) per operation [where n is range of 1st and m is range of 2nd dimension]
-Memory complexity: O(n*m) [where is size of 1st and m size of 2nd dimension]
+  Data structure: Fenwick tree [2D]
+  Time complexity: O(logn*logm) per operation [where n is range of 1st and m is range of 2nd dimension]
+  Memory complexity: O(n*m) [where is size of 1st and m size of 2nd dimension]
 */
 
 #include <bits/stdc++.h>
