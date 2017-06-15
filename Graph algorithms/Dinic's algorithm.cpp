@@ -1,6 +1,6 @@
 /*
-Algorithm: Dinic algorithm
-Complexity: O(m*n^2) [where n is number of nodes and m number of edges in the graph]
+    Algorithm: Dinic algorithm
+    Complexity: O(m*n^2) [where n is number of nodes and m number of edges in the graph]
 */
 
 #include <bits/stdc++.h>
