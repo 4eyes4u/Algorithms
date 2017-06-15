@@ -1,6 +1,6 @@
 /*
-Algorithm: Prim's algorithm
-Complexity: O(m*logn) [where n is number of nodes and m number of edges in the graph]
+    Algorithm: Prim's algorithm
+    Complexity: O(m*logn) [where n is number of nodes and m number of edges in the graph]
 */
 
 #include <bits/stdc++.h>
