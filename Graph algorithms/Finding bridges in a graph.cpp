@@ -4,7 +4,7 @@
 
 * * *
 Graph MUST NOT be a multigraph.
-Graph is considered to be undirected.
+Graph is supposed to be undirected.
 */
 
 #include <bits/stdc++.h>
