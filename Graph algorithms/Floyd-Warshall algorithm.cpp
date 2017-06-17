@@ -1,6 +1,6 @@
 /*
-Algorithm: Floyd-Warshall algorithm
-Complexity: O(n^3) [where n is number of nodes in the graph]
+    Algorithm: Floyd-Warshall algorithm
+    Complexity: O(n^3) [where n is number of nodes in the graph]
 */
 
 #include <bits/stdc++.h>
