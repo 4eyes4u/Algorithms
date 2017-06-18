@@ -1,5 +1,5 @@
 /*
-    Algorithm: Dinic algorithm
+    Algorithm: Dinic's algorithm
     Complexity: O(m*n^2) [where n is number of nodes and m number of edges in the graph]
 */
 
