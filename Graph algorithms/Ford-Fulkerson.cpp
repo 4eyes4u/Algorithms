@@ -58,7 +58,7 @@ int FordFulkerson (int s, int t)
     memset(mark, 0, sizeof mark);
     flow=dfs(s, inf, t);
     maxFlow+=flow;
-  } while (flow>0);
+  } while (flow);
 
   return maxFlow;
 }
