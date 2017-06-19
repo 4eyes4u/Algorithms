@@ -23,7 +23,7 @@ namespace ScalingDinic {
   void init (int n) {
     V=n;
     E=0;
-    fill (head+1, head+V+1, -1);
+    fill(head+1, head+V+1, -1);
   }
 
   void add_edge (int u, int v, int c1, int c2) {
@@ -34,7 +34,7 @@ namespace ScalingDinic {
   }
 
   bool bfs (int s, int t, int bound) {
-    fill (dist+1, dist+V+1, -1);
+    fill(dist+1, dist+V+1, -1);
     dist[s]=0;
     queue<int> q;
 
