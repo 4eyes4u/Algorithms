@@ -73,7 +73,7 @@ namespace ScalingDinic {
     return 0;
   }
 
-  long long MaximumFlow(int s, int t) {
+  long long MaximumFlow (int s, int t) {
     long long maxFlow=0;
 
     for (int bound=(1<<30);bound>=1;bound>>=1) {
