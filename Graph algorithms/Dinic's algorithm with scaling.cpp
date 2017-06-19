@@ -1,6 +1,6 @@
 /*
   Algorithm: Dinic's algorithm with scaling
-  Complexity: O(E*V*log(MEC)) [where V is number of nodes, E is numbe of edges and MEC is maximum-edge capacity]
+  Complexity: O(E*V*log(MEC)) [where V is number of nodes, E is number of edges and MEC is maximum-edge capacity]
 */
 
 #include <bits/stdc++.h>
