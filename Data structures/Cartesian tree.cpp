@@ -3,7 +3,7 @@
   Memory complexity: O(n) [whre n is number of nodes]
 
 * * *
-Useful for constructing LCP, suffix array, treaps...
+Useful for constructing LCP, suffix array, treap...
 */
 
 #include <bits/stdc++.h>
