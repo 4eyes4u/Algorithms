@@ -40,8 +40,9 @@ bool point_in_polygon (pt *p, int n, pt t) {
 
 int main() {
   pt p[]={{0, 0}, {2, 0}, {2, 2}, {0, 2}};
-  pt t={1, 1};
-  printf ("%d\n", point_in_polygon(p, 4, t));
+  pt t1={1, 1}, t2={5, 5};
+  printf ("%d\n", point_in_polygon(p, 4, t1));
+  printf ("%d\n", point_in_polygon(p, 4, t2));
 
   return 0;
 }
