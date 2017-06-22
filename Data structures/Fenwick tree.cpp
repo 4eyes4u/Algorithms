@@ -7,23 +7,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N=1e5+10;
+class FenwickTree {
+private:
+  int *a, n;
+public:
+  FenwickTree (int size) {
+    n=size;
+    a=(int *)calloc(n, sizeof(int));
+  }
 
-int bit[N];
+  void add (int x, int val) {
+    for (;x<=n;x+=x&-x) a[x]+=val;
+  }
 
-void update (int x, int val)
-{
-    for (;x<N;x+=x&-x) bit[x]+=val;
-}
-
-int get (int x)
-{
+  int get (int x) {
     int ret=0;
-    for (;x;x-=x&-x) ret+=bit[x];
+    for (;x>0;x-=x&-x) ret+=a[x];
     return ret;
-}
+  }
+};
 
-int main()
-{
-    return 0;
+int main() {
+  FenwickTree *bit=new FenwickTree(100);
+
+  bit->add(5, 1);
+  bit->add(10, 2);
+  bit->add(20, 3);
+
+  printf ("%d\n", bit->get(50));
+  printf ("%d\n", bit->get(15));
+  printf ("%d\n", bit->get(10));
+
+  return 0;
 }
