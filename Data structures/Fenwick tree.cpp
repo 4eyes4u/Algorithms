@@ -16,7 +16,7 @@ public:
     a=(int *)calloc(n, sizeof(int));
   }
 
-  void add (int x, int val) {
+  void update (int x, int val) {
     for (;x<=n;x+=x&-x) a[x]+=val;
   }
 
@@ -30,9 +30,9 @@ public:
 int main() {
   FenwickTree *bit=new FenwickTree(100);
 
-  bit->add(5, 1);
-  bit->add(10, 2);
-  bit->add(20, 3);
+  bit->update(5, 1);
+  bit->update(10, 2);
+  bit->update(20, 3);
 
   printf ("%d\n", bit->get(50));
   printf ("%d\n", bit->get(15));
