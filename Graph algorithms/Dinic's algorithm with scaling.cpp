@@ -1,6 +1,6 @@
 /*
   Algorithm: Dinic's algorithm with scaling
-  Complexity: O(E*V*log(MEC)) [where V is number of nodes, E is number of edges and MEC is maximum-edge capacity]
+  Complexity: O(E*V*log(MEC)) [where V is number of nodes, E is numbe of edges and MEC is maximum-edge capacity]
 */
 
 #include <bits/stdc++.h>
@@ -23,7 +23,7 @@ namespace ScalingDinic {
   void init (int n) {
     V=n;
     E=0;
-    fill(head+1, head+V+1, -1);
+    fill (head+1, head+V+1, -1);
   }
 
   void add_edge (int u, int v, int c1, int c2) {
@@ -34,7 +34,7 @@ namespace ScalingDinic {
   }
 
   bool bfs (int s, int t, int bound) {
-    fill(dist+1, dist+V+1, -1);
+    fill (dist+1, dist+V+1, -1);
     dist[s]=0;
     queue<int> q;
 
@@ -73,15 +73,15 @@ namespace ScalingDinic {
     return 0;
   }
 
-  long long MaximumFlow (int s, int t) {
-    long long maxFlow=0;
+  long long maximum_flow(int s, int t) {
+    long long flow=0;
 
     for (int bound=(1<<30);bound>=1;bound>>=1) {
       if (!bfs(s, t, bound)) continue;
-      while (dfs(s, t, bound)) maxFlow+=1ll*bound;
+      while (dfs(s, t, bound)) flow+=1ll*bound;
     }
 
-    return maxFlow;
+    return flow;
   }
 }
 
@@ -96,7 +96,7 @@ int main() {
       ScalingDinic::add_edge(u, v, c, 0);
   }
 
-  printf ("%lld\n", ScalingDinic::MaximumFlow(s, t));
+  printf ("%lld\n", ScalingDinic::maximum_flow(s, t));
 
   return 0;
 }
