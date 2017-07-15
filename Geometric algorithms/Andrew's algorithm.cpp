@@ -19,7 +19,7 @@ vector<pt> convexHull(vector<pt> pts) {
         sort(pts.begin(), pts.end());
 
         for (int i = 0; i < 2; i++) {
-                auto init_size = pts.size();
+                auto init_size = hull.size();
 
                 for (auto xt : pts) {
                         while (hull.size() >= 2 + init_size && ccw(hull[hull.size() - 2], hull.back(), xt) <= 0)
