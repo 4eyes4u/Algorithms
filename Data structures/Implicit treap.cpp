@@ -1,3 +1,14 @@
+/*
+  Data structure: Implicit Treap
+  Time complexity: O(logn) per operation (average) [where n is number of elements]
+  Memory complexity: O(n) [where n is number of elements]
+
+* * *
+Support every objective function.
+
+In given code maximum on interval and reverse interval are implemented.
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
