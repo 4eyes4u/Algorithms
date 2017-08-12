@@ -1,11 +1,6 @@
 /*
-  Algoritam: Belman-Fordov algoritam
-  Slozenost: O(n * m)
-
-* * *
-Najkraci put ne moze da ima ciklus (osim ako je negativan).
-Prema tome, dovoljno je da svaku granu posetimo n - 1 puta i utvrdimo eventualne promene.
-Ukoliko se put do nekog cvora skrati ponovnim prolaskom kroz grane, tada postoji negativan ciklus.
+  Algorithm: Bellman-Ford algorithm
+  Complexity: O(E * V) [where E is number of edges and V is number of nodes in the graph]
 */
 
 #include <bits/stdc++.h>
