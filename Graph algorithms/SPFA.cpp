@@ -1,11 +1,9 @@
 /*
-  Algoritam: Shortest Path Faster Algorithm (SPFA)
-  Slozenost: O(k * m) [k je konstanta koja zavisi od grafa i nikad nije veca od V]
+  Algorithm: Shortest Path Faster Algorithm (SPFA)
+  Complexity: O(k * E) [where k is constant that depends on graph]
 
 * * *
-Iako je u teoriji daleko sporiji od Dajkstrinog algoritma, u praksi se pokazuje kao jako efikasan.
-Moguce je ustanoviti postojojanje negativnog ciklusa (neki cvor je u queueu bio bar n puta). Dakle, teorijski je efikasan bar kao Bellman-Fordov algoritam.
-Podrzava negativne tezine grana.
+Very efficient in practice.
 */
 
 #include <bits/stdc++.h>
