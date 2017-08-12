@@ -20,9 +20,8 @@ void dfs(int v) {
 void bfs(int source) {
   queue<int> q;
 
-  for (q.push(source); q.size(); q.pop()) {
+  for (q.push(source), mark[source] = 1; q.size(); q.pop()) {
     int v = q.front();
-    mark[v] = 1;
     for (auto xt: g[v]) {
       if (mark[xt]) continue;
       q.push(xt);
