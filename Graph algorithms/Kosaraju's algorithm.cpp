@@ -1,6 +1,6 @@
 /*
     Algorithm: Kosaraju's algorithm
-    Complexity: O(n+m) [where n is number of nodes and m number of edges in the graph]
+    Complexity: O(V + E) [where E is number of edges and V number of nodes in the graph]
 */
 
 #include <bits/stdc++.h>
