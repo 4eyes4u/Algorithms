@@ -30,19 +30,7 @@ private:
   } * root;
 
   int size(Node *v) { return v ? v->size : 0; }
-
-  int f(Node *v) { return v ? v->f : 0; }
-
-  void update_size(Node *v) {
-    if (v)
-      v->size = size(v->l) + size(v->r) + 1;
-  }
-
-  void update_f(Node *v) {
-    if (v)
-      v->f = max(max(f(v->l), f(v->r)), v->value);
-  }
-
+  
   void propagate(Node *v) {
     if (v && v->reverse) {
       v->reverse = 0;
@@ -53,6 +41,21 @@ private:
       if (v->r)
         v->r->reverse ^= 1;
     }
+  }
+  
+  int f(Node *v) {
+    propagate(v);
+    return v ? v->f : 0;
+  }
+
+  void update_size(Node *v) {
+    if (v)
+      v->size = size(v->l) + size(v->r) + 1;
+  }
+
+  void update_f(Node *v) {
+    if (v)
+      v->f = max(max(f(v->l), f(v->r)), v->value);
   }
 
   void split(Node *v, Node *&l, Node *&r, int key, int lager = 0) {
