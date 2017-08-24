@@ -1,6 +1,6 @@
 /*
     Algorithm: Generating basis of Z^{n}_2
-    Complexity: O(n) per operation
+    Complexity: O(n) per operation [where n is dimension]
 
     * * *
     Implemented vector space has DIM = 32 (int).
