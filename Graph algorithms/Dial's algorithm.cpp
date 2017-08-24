@@ -1,9 +1,9 @@
 /*
-  Algoritam: Dajlov algoritam
-  Slozenost: O(m + c * n) [gde je c gornje ogranicenje tezine grana]
+  Algorithm: Dial's algorithm
+  Complexity: O(E + C * V) [where C is upper bound for edge weight, E number of edges and V number of nodes in the graph]
 
 * * *
-Koristi se kada su tezine grana jako mali brojevi.
+Can be used where C is small number.
 */
 
 #include <bits/stdc++.h>
