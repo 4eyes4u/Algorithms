@@ -8,66 +8,51 @@ Merge operation is maximum.
 */
 
 #include <bits/stdc++.h>
+#define mid (left + right) / 2
 using namespace std;
 
-class SegmentTree {
-#define mid (left+right)/2
+const int N = 1e5 + 10;
 
-private:
-  int *a, n;
-public:
-  SegmentTree (int size) {
-    n=size;
-    a=(int *)calloc(4*size, sizeof(int));
-  }
+int st[4 * N], n;
+int a[N];
 
-  void init (int idx, int left, int right, int *b) {
-    if (left==right) {
-      a[idx]=b[left];
-      return;
-    }
+void init(int idx, int left, int right) {
+	if (left == right) {
+		st[idx] = a[left];
+		return;
+	}
+	
+	init(2 * idx, left, mid);
+	init(2 * idx + 1, mid + 1, right);
+}
 
-    init(2*idx, left, mid, b);
-    init(2*idx+1, mid+1, right, b);
-    a[idx]=max(a[2*idx], a[2*idx+1]);
-  }
+void update(int idx, int left, int right, int pos, int val) {
+	if (left == right) {
+		st[idx] = val;
+		return;
+	}
+	
+	if (pos <= mid) update(2 * idx, left, mid, pos, val);
+	else update(2 * idx + 1, mid + 1, right, pos, val);
+	st[idx] = max(st[2 * idx], st[2 * idx + 1]);
+}
 
-  void update (int idx, int left, int right, int x, int val) {
-    if (left==right) {
-      a[idx]=val;
-      return;
-    }
-
-    if (x<=mid) update (2*idx, left, mid, x, val);
-    else update (2*idx+1, mid+1, right, x, val);
-    a[idx]=max(a[2*idx], a[2*idx+1]);
-  }
-
-  int query (int idx, int left, int right, int l, int r) {
-    if (l<=left && right<=r) return a[idx];
-
-    int ret=0;
-    if (l<=mid) ret=max(ret, query(2*idx, left, mid, l, r));
-    if (r>mid) ret=max(ret, query(2*idx+1, mid+1, right, l, r));
-    return ret;
-  }
-
-  int get_size () {
-    return n;
-  }
-};
+int query(int idx, int left, int right, int l, int r) {
+	if (left <= l && right <= r) return st[idx];
+	
+	int ret = 0;
+	if (l <= mid) ret = max(ret, query(2 * idx, left, mid, l, r));
+	if (r > mid) ret = max(ret, query(2 * idx + 1, mid + 1, right, l, r));
+	return ret;
+}
 
 int main() {
-  SegmentTree *st=new SegmentTree(1000);
+	scanf("%d", &n);
+	for (int i = 1; i <= n; i++)
+		scanf("%d", &a[i]);
+		
+	init(1, 1, n);
+	printf("%d\n", query(1, 1, n, 1, n));
 
-  int n=st->get_size();
-  st->update(1, 1, n, 5, 1000);
-  st->update(1, 1, n, 1, 10);
-  st->update(1, 1, n, 512, 256);
-
-  printf ("%d\n", st->query(1, 1, n, 1, 1000));
-  printf ("%d\n", st->query(1, 1, n, 200, 600));
-  printf ("%d\n", st->query(1, 1, n, 1, 4));
-
-  return 0;
+	return 0;
 }
