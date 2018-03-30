@@ -7,93 +7,84 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int inf=1e9;
+const int inf = 1e9;
 
-class dHeap
-{
+class dHeap {
 private:
     vector<int> keys;
     int d, n;
-    int parent(int x)
-    {
-        return (x-1)/d;
-    }
-    int child(int x, int i)
-    {
-        return d*x+i;
-    }
-    void fixDown(int x)
-    {
-        for (int i=1;i<=d;i++)
-        {
-            if (x*d+i>n) break;
-            if (keys[x*d+i]<keys[x])
-            {
-                swap(keys[x*d+i], keys[x]);
-                fixDown(x*d+i);
+    
+    int parent(int x) { return (x - 1) / d; }
+    
+    int child(int x, int i) { return d * x + i; }
+    
+    void fix_down(int x) {
+        for (int i = 1; i <= d; i++) {
+            if (x * d + i > n) break;
+            
+            if (keys[child(x, i)] < keys[x]) {
+                swap(keys[child(x, i)], keys[x]);
+                fix_down(child(x, i));
                 return;
             }
         }
     }
-    void fixUp(int x)
-    {
-        if (keys[x]<keys[parent(x)])
-        {
-            swap (keys[x], keys[parent(x)]);
-            fixUp(parent(x));
+    
+    void fix_up(int x) {
+        if (keys[x] < keys[parent(x)]) {
+            swap(keys[x], keys[parent(x)]);
+            fix_up(parent(x));
         }
     }
+    
 public:
-    bool isEmpty()
-    {
-        return n==0;
-    }
-    void clear()
-    {
+	bool is_empty() { return n == 0; }
+
+    void clear() {
         keys.clear();
-        n=0;
+        n = 0;
     }
-    void init(int *a, int sz)
-    {
-        n=sz;
+    
+    void init(int *a, int sz) {
+        n = sz;
         keys.resize(n);
-        for (int i=0;i<n;i++) keys[i]=a[i];
-        for (int i=(int)((n-2)/d);i>=0;i--) fixDown(i);
+        for (int i = 0; i < n; i++) keys[i] = a[i];
+        for (int i = (n - 2) / d; i >= 0; i--) fix_down(i);
     }
-    int findMin()
-    {
-        if (isEmpty()) return inf;
+    
+    int find_min() {
+        if (is_empty()) return inf;
         return keys[0];
     }
-    void insertNode(int val)
-    {
+    
+    void insert_node(int val) {
         keys.push_back(val);
         n++;
-        fixUp(n);
+        fix_up(n);
     }
-    void deleteMin()
-    {
-        if (isEmpty()) return;
-        swap(keys[0], keys[n-1]);
-        keys.pop_back();
+    
+    void delete_min() {
+        if (is_empty()) return;
+        
         n--;
-        fixDown(0);
+        swap(keys[0], keys[n]);
+        keys.pop_back();
+        fix_down(0);
     }
-    void decreaseKey(int x, int val)
-    {
-        if (x>=n) return;
-        keys[x]=val;
-        fixUp(x);
+    
+    void decrease_key(int x, int val) {
+        if (x >= n) return;
+        keys[x] = val;
+        fix_up(x);
     }
-    void deleteNode(int x)
-    {
-        if (isEmpty()) return;
-        decreaseKey(x, -inf);
-        deleteMin();
+    
+    void delete_node(int x) {
+        if (is_empty()) return;
+        decrease_key(x, -inf);
+        delete_min();
     }
 };
 
-int main()
-{
+int main() {
     return 0;
 }
