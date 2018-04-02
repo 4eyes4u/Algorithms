@@ -1,3 +1,12 @@
+/*
+    Algorithm: Quick sort
+    Compleity: O(n ^ 2); O(n * logn) in average [where n is number of elements]
+
+* * *
+
+q_sort(L, R) sort array up to R - 1
+*/
+
 #include <cstdio>
 #include <utility>
 using namespace std;
