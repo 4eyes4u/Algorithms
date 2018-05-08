@@ -2,15 +2,15 @@
 #include <stdlib.h>
 
 typedef struct _Node {
-	struct _Node *next;
-	int val;
+    struct _Node *next;
+    int val;
 } Node;
 
 Node* make_node(int val) {
-	Node *new_node = (Node *)calloc(1, sizeof(Node));
-	new_node -> val = val;
+    Node *new_node = (Node *)calloc(1, sizeof(Node));
+    new_node -> val = val;
 
-	return new_node;
+    return new_node;
 }
 
 Node* next(Node *v) {
@@ -18,30 +18,30 @@ Node* next(Node *v) {
 }
 
 void insert(Node **head, Node **tail, Node *v, int val) {
-	Node *new_node = make_node(val);
+    Node *new_node = make_node(val);
 
-	if (!v) {
-		new_node -> next = *head;
-		*head = new_node;
-	}
-	else {
-		new_node -> next = next(v);
-		v -> next = new_node;
-	}
-	
-	if (!next(new_node)) *tail = new_node;
+    if (!v) {
+        new_node -> next = *head;
+        *head = new_node;
+    }
+    else {
+        new_node -> next = next(v);
+        v -> next = new_node;
+    }
+    
+    if (!next(new_node)) *tail = new_node;
 }
 
 void erase(Node **head, Node **tail, Node *v) { // deleting v -> next    
     Node *tmp = (Node *)calloc(1, sizeof(Node));
 
-	if (!v) {
+    if (!v) {
         tmp = *head;
         *head = next(*head);
         
         if (!*head) *tail = NULL;
     }
-	else {
+    else {
         tmp = next(v);
         v -> next = next(v -> next);
 
@@ -52,26 +52,26 @@ void erase(Node **head, Node **tail, Node *v) { // deleting v -> next
 }
 
 void print_list(Node *head, FILE *out) {
-	if (!head) {
-		fputs("\n", out);
-		return;
-	}
+    if (!head) {
+        fputs("\n", out);
+        return;
+    }
 
-	fprintf(out, "%d ", head -> val);
-	print_list(head -> next, out);
+    fprintf(out, "%d ", head -> val);
+    print_list(head -> next, out);
 }
 
 void delete_list(Node *head) {
-	if (!head) return;
+    if (!head) return;
     delete_list(head -> next);
-	free(head);	
+    free(head);    
 }
 
 void read_list(Node **head, Node **tail, FILE *in) {
-	int x;
-	
+    int x;
+    
     while (fscanf(in, "%d", &x) != EOF)
-		insert(head, tail, *tail, x);
+        insert(head, tail, *tail, x);
 }
 
 int main() {
@@ -89,6 +89,5 @@ int main() {
     
     delete_list(head);
 
-	return 0;
+    return 0;
 }
-
