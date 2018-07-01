@@ -1,39 +1,39 @@
 /*
-   Fast input
- */
+    Fast input
+*/
 
 #include <bits/stdc++.h>
 using namespace std;
 
-int readInt() {
-        bool minus = false;
-        int result = 0;
-        char ch;
-        ch = getchar();
-        while (true) {
-                if (ch == '-')
-                        break;
-                if (ch >= '0' && ch <= '9')
-                        break;
-                ch = getchar();
-        }
-        if (ch == '-')
-                minus = true;
-        else
-                result = ch - '0';
-        while (true) {
-                ch = getchar();
-                if (ch < '0' || ch > '9')
-                        break;
-                result = result * 10 + (ch - '0');
-        }
-        if (minus)
-                return -result;
-        else
-                return result;
+int read_int() {
+    int ret = 0, sign = 1;
+    char c;
+    
+    do {
+        c = getchar();
+    } while (c != '-' && (c < '0' || c > '9'));
+    
+    if (c == '-') sign = -1;
+    else ret = c - '0';
+    
+    for (c = getchar(); ; c = getchar()) {
+        if (c < '0' || c > '9') break;
+        ret = 10 * ret + (c - '0');
+    }
+    
+    return ret * sign;
 }
 
-int main()
-{
-  return 0;
+int main() {
+    int n = read_int();
+    vector<int> v;
+
+    while (n--) {
+        int x = read_int();
+        v.push_back(x);
+    }
+
+    for (auto x: v) cout << x << endl;
+
+    return 0;
 }

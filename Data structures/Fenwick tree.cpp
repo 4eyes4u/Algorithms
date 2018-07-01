@@ -1,42 +1,40 @@
 /*
-  Data structure: Fenwick tree (Binary indexed tree)
-  Time complexity: O(logn) per operation [where n is range]
-  Memory complexity: O(n) [where n is size of the tree]
+    Data structure: Fenwick tree (Binary indexed tree)
+    Time complexity: O(logn) per operation [where n is range]
+    Memory complexity: O(n) [where n is size of the tree]
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-class FenwickTree {
-private:
-  int *a, n;
-public:
-  FenwickTree (int size) {
-    n=size;
-    a=(int *)calloc(n, sizeof(int));
-  }
+const int N = 1e6 + 10;
 
-  void update (int x, int val) {
-    for (;x<=n;x+=x&-x) a[x]+=val;
-  }
+int bit[N], n;
 
-  int get (int x) {
-    int ret=0;
-    for (;x>0;x-=x&-x) ret+=a[x];
+void update(int x, int val) {
+    for (; x < N; x += x & -x)
+        bit[x] += val;
+}
+
+int get(int x) {
+    int ret = 0;
+
+    for (; x; x -= x & -x)
+        ret += bit[x];
+
     return ret;
-  }
-};
+}
 
 int main() {
-  FenwickTree *bit=new FenwickTree(100);
+    // scanf("%d", &n);
+    n = 10;
 
-  bit->update(5, 1);
-  bit->update(10, 2);
-  bit->update(20, 3);
+    update(5, 6);
+    update(1, 12);
+    update(7, 3);
+    
+    printf("%d\n", get(10)); // should be 21
+    printf("%d\n", get(8) - get(4)); // should be 9
 
-  printf ("%d\n", bit->get(50));
-  printf ("%d\n", bit->get(15));
-  printf ("%d\n", bit->get(10));
-
-  return 0;
+    return 0;
 }
