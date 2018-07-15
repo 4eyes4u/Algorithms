@@ -1,3 +1,8 @@
+/*
+    Algorithm: Fast Fourier Transform (FFT)
+    Complexity: Theta(n * logn) [where n is degree of polynomial]
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -7,7 +12,7 @@ const double pi = acos(-1.0);
 void dft(vector<base> &a, int inv) {
     int n = a.size();
 
-    for (int i = 1, j = 0; i < n; i++) { // flipping bits (because of butterfly operation)
+    for (int i = 1, j = 0; i < n; i++) { // flipping bits because of butterfly operation
         int bit = n >> 1;
         for (; bit & j; bit >>= 1) j ^= bit;
         j ^= bit;
