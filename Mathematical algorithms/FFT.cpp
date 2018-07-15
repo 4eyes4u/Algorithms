@@ -1,81 +1,99 @@
-/*
-  Algorithm: Fast Fourier transform
-  Complexity: Theta(n*logn) [where n is degree of polynomial]
-*/
-
 #include <bits/stdc++.h>
 using namespace std;
 
-namespace FFT
-{
-  typedef complex<double> base;
-  const double pi=acos(-1.0);
+typedef complex<double> base;
+const double pi = acos(-1.0);
 
-  void DFT (vector<base> &a, bool inverse)
-  {
-    int n=a.size();
+void dft(vector<base> &a, int inv) {
+    int n = a.size();
 
-    for (int i=1, j=0;i<n;i++)
-    {
-      int bit=n>>1;
-      for (;j>=bit;bit>>=1) j-=bit;
-      j+=bit;
-      if (i<j) swap(a[i], a[j]);
+    for (int i = 1, j = 0; i < n; i++) { // flipping bits (because of butterfly operation)
+        int bit = n >> 1;
+        for (; bit & j; bit >>= 1) j ^= bit;
+        j ^= bit;
+
+        if (i < j) swap(a[i], a[j]);
     }
 
-    for (int len=2;len<=n;len<<=1)
-    {
-      double ang=2.0*pi/len*(inverse?-1.0:1.0);
-      base wn(cos(ang), sin(ang));
+    for (int len = 2; len <= n; len <<= 1) {
+        base wn = polar(1.0, 2.0 * pi / len * (inv ? -1.0 : 1.0));
 
-      for (int i=0;i<n;i+=len)
-      {
-        base w(1.0);
-        for (int j=0;j<len/2;j++)
-        {
-          base t=a[i+j+len/2]*w;
-          a[i+j+len/2]=a[i+j]-t;
-          a[i+j]+=t;
-          w*=wn;
+        for (int i = 0; i < n; i += len) {
+            base w = polar(1.0, 0.0);
+
+            for (int j = 0; j < len / 2; j++) {
+                base t = a[i + j + len / 2] * w; // multiplying by w only once
+                a[i + j + len / 2] = a[i + j] - t;
+                a[i + j] += t;
+
+                w *= wn;
+            }
         }
-      }
     }
 
-    if (inverse) for (int i=0;i<n;i++) a[i]/=n;
-  }
-
-  vector<int> convolute (vector<int> a, vector<int> b)
-  {
-    vector<int> ret;
-    int n=1;
-    while (n<max(a.size(), b.size())) n<<=1;
-    n<<=1;
-
-    vector<base> fa(a.begin(), a.end()), fb(b.begin(), b.end());
-    fa.resize(n), fb.resize(n), ret.resize(n);
-
-    DFT(fa, 0);
-    DFT(fb, 0);
-    for (int i=0;i<n;i++) fa[i]*=fb[i];
-
-    DFT(fa, 1);
-    for (int i=0;i<n;i++) ret[i]=(int)round(fa[i].real());
-
-    while (ret.back()==0 && ret.size()) ret.pop_back();
-    return ret;
-  }
+    if (inv)
+        for (auto &x: a) x /= n;
 }
 
-int main()
-{
-  int n, m;
-  scanf ("%d%d", &n, &m);
-  vector<int> a(n), b(m);
-  for (int i=0;i<n;i++) scanf ("%d", &a[i]);
-  for (int i=0;i<m;i++) scanf ("%d", &b[i]);
+vector<int> convolute(vector<int> &a, vector<int> &b) {
+    int n = 1;
+    while (n < max(a.size(), b.size())) n <<= 1;
+    n <<= 1;
 
-  vector<int> c=FFT::convolute(a, b);
-  for (auto xt: c) printf ("%d ", xt);
+    vector<int> c(n, 0);
+    vector<base> fa(a.begin(), a.end()), fb(b.begin(), b.end());
+    fa.resize(n), fb.resize(n);
 
-  return 0;
+    dft(fa, 0);
+    dft(fb, 0);
+    for (int i = 0; i < n; i++) fa[i] *= fb[i];
+
+    dft(fa, 1);
+    for (int i = 0; i < n; i++) c[i] = round(fa[i].real());
+
+    while (c.size() && !c.back()) c.pop_back(); // we can remove t(r)ailing zeroes
+    return c;
+}
+
+void eval(vector<int> &c) { // normalization of number
+    int carry = 0;
+
+    for (int i = 0; i < c.size(); i++) {
+        c[i] += carry;
+        carry = c[i] / 10;
+        c[i] %= 10;
+    }
+
+    reverse(c.begin(), c.end());
+}
+
+vector<int> fast_pow(vector<int> &a, int k) { // calculating [P(x)] ^ k
+    vector<int> ret = {1};
+
+    while (k) {
+        if (k & 1) ret = convolute(a, ret);
+        k >>= 1;
+        a = convolute(a, a);
+    }
+
+    return ret;
+}
+
+int main() {
+    string s;
+    cin >> s;
+    vector<int> v(s.length());
+
+    // transforming array of chars to array of ints
+    transform(s.begin(), s.end(), v.rbegin(), [](char c) -> int { return atoi(&c); });
+
+    int k;
+    cin >> k;
+    v = fast_pow(v, k);
+    
+    eval(v);
+    for (auto x: v) cout << x;
+    cout << endl;
+
+    return 0;
 }
