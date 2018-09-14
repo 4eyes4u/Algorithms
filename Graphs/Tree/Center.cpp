@@ -1,9 +1,11 @@
 /*
-    Algorithm: Finding center in a tree
-    Complexity: O(V) [where V is number of nodes in the tree]
+    Name: Finding center of a tree
+    
+    Time complexity: O(N)
+    Space complexity: O(N)s
 
 * * *
-Additional check is needed because sub-star graph.
+    Additional check is needed because sub-star graph.
 */
 
 #include <bits/stdc++.h>
@@ -18,10 +20,9 @@ bool path[N];
 pair<int, int> dfs(int v, int prev) {
     pair<int, int> ret = {dist[v] = dist[prev] + 1, v};
 
-    for (auto xt: g[v]) {
-        if (xt == prev) continue;
+    for (auto xt : g[v])
+        if (xt != prev)
         ret = max(ret, dfs(xt, v));
-    }
 
     return ret;
 }
@@ -43,18 +44,15 @@ int find_center(int n, int d) {
 int main() {
     int n;
     scanf("%d", &n);
-
-    for (int i = 1, a, b; i < n; i++) {
-        scanf("%d%d", &a, &b);
-
-        g[a].emplace_back(b);
-        g[b].emplace_back(a);
+    for (int i = 1, u, v; i < n; i++) {
+        scanf("%d%d", &u, &v);
+        g[u].emplace_back(v);
+        g[v].emplace_back(u);
     }
 
     dist[0] = -1;
-    pair<int, int> p = dfs(dfs(1, 0).second, 0);
+    auto p = dfs(dfs(1, 0).second, 0);
     make_path(p.second);
-    
     int center = find_center(n, p.first);
 
     return 0;

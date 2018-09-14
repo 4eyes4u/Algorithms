@@ -1,9 +1,11 @@
 /*
-    Algorithm: BST merging
-    Complexity: O(V * log^2 V) [where V is number of nodes in the tree]
+    Name: Merging binary search trees (smaller to bigger)
+
+    Time complexity: O(N * log^2(N))
+    Space complexity: O(N)
 
 * * *
-Calculating number of distinct elements in a subtree of every node.
+    Calculating number of disctinct elements in every subtree.
 */
 
 #include <bits/stdc++.h>
@@ -11,53 +13,49 @@ using namespace std;
 
 const int N = 1e5 + 10;
 
-struct Node {
-    int val;
-    vector<int> adj;
-} g[N];
-
-int sol[N], aux[N], p[N]; // aux maintains solution for every subtree
-set<int> skup[N];
+vector<int> g[N];
+int val[N], sol[N], tmp[N], p[N];
+set<int> sets[N];
 
 int unite(int a, int b) {
-    if (skup[a].size() < skup[b].size()) swap (a, b);
-
-    for (auto xt: skup[b]) skup[a].insert(xt);
-    aux[a] = skup[a].size();
+    if (sets[a].size() < sets[b].size())
+        swap(a, b);
+    
+    for (auto x : sets[b])
+        sets[a].insert(x);
+    tmp[a] = sets[a].size();
 
     return a;
 }
 
 void dfs(int v, int prev) {
     p[v] = v;
-    aux[v] = 1;
-    skup[v].insert(g[v].val);
+    tmp[v] = 1;
+    sets[v].insert(val[v]);
 
-    for (auto xt: g[v].adj) {
-        if (xt==prev) continue;
-
-        dfs(xt, v);
-        p[v] = unite(p[v], p[xt]);
+    for (auto xt : g[v]) {
+        if (xt != prev) {
+            dfs(xt, v);
+            p[v] = unite(p[v], p[xt]);
+        }
     }
 
-    sol[v] = aux[p[v]];
+    sol[v] = tmp[p[v]];
 }
 
 int main() {
     int n;
     scanf("%d", &n);
-
     for (int i = 1; i <= n; i++)
-        scanf("%d", &g[i].val);
+        scanf("%d", val + i);
 
-    for (int i = 1, a, b; i < n; i++) {
-        scanf("%d%d", &a, &b);
-
-        g[a].adj.emplace_back(b);
-        g[b].adj.emplace_back(a);
+    for (int i = 1, u, v; i < n; i++) {
+        scanf("%d%d", &u, &v);
+        g[u].emplace_back(v);
+        g[v].emplace_back(u);
     }
 
-    dfs(1, 0);
+    dfs(1, -1);
 
     for (int i = 1; i <= n; i++)
         printf("%d ", sol[i]);
