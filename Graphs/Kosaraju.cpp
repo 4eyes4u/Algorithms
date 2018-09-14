@@ -1,6 +1,8 @@
 /*
-    Algorithm: Kosaraju's algorithm
-    Complexity: O(V + E) [where E is number of edges and V number of nodes in the graph]
+    Name: Koasaraju's algorithm
+
+    Time complexity: O(N + M)
+    Space complexity: O(N + M)
 */
 
 #include <bits/stdc++.h>
@@ -24,15 +26,15 @@ void dfs1(int v) {
 }
 
 void dfs2(int v, int k){
+    scc[k].emplace_back(v);
     in[v] = k;
-    scc[k].push_back(v);
     
     for (auto xt: inv[v])
     	if (!in[xt])
     		dfs2(xt, k);
 }
 
-int Kosaraju(int n) { // returns number of SCC
+int Kosaraju(int n) {
 	int ret = 0;
 
     for (int i = 1; i <= n; i++)
@@ -42,27 +44,27 @@ int Kosaraju(int n) { // returns number of SCC
     while (!box.empty()) {
         int v = box.top();
         box.pop();
-        if (in[v]) continue;
-
-        ret++;
-        dfs2(v, ret);
+        
+        if (!in[v]) {
+            ret++;
+            dfs2(v, ret);
+        }
     }
     
+    // number of SCC
     return ret;
 }
 
 int main() {
 	int n, m;
     scanf("%d%d", &n, &m);
-    
-    for (int i = 0, a, b; i < m; i++) {
-        scanf("%d%d", &a, &b);
-        
-        g[a].push_back(b);
-        inv[b].push_back(a);
+    for (int i = 0, u, v; i < m; i++) {
+        scanf("%d%d", &u, &v);
+        g[u].emplace_back(v);
+        inv[v].emplace_back(u);
     }
 
-    printf("%d\n", Kosaraju(n));
+    int cnt_scc = Kosaraju(n);
 
     return 0;
 }

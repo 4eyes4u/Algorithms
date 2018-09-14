@@ -1,6 +1,8 @@
 /*
-    Algorithm: Topological sort
-    Complexity: O(V) [where V is number of nodes in the graph]
+    Name: Topological sort (Kahn's algorithm)
+
+    Time complexity: O(N + M)
+    Space complexity: O(N + M)
 */
 
 #include <bits/stdc++.h>
@@ -34,16 +36,13 @@ bool Kahn(int n) {
 int main() {
     int n, m;
     scanf("%d%d", &n, &m);
-
-    for (int i = 0, a, b; i < m; i++) {
-        scanf("%d%d", &a, &b);
-        g[a].emplace_back(b);
-        in_deg[b]++;
+    for (int i = 0, u, v; i < m; i++) {
+        scanf("%d%d", &u, &v);
+        g[u].emplace_back(v);
+        in_deg[v]++;
     }
 
-    if (Kahn(n))
-        for (int i = 0; i < n; i++)
-            printf("%d ", topo[i]);
+    bool flag = Kahn(n);
 
     return 0;
 }

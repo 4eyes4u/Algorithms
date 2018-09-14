@@ -1,6 +1,8 @@
 /*
-    Algorithms: Depth First Search & Breadth First Search
-    Complexity: O(E + V) [where E is number of edges and V number of nodes in the graph]
+    Name: Depth-FIrst-Search and Breadth-First-Search
+
+    Time complexity: O(N + M)
+    Space complexity: O(N + M)
 */
 
 #include <bits/stdc++.h>
@@ -26,15 +28,14 @@ void bfs(int source) {
         int v = q.front();
         
         for (auto xt: g[v]) {
-            if (mark[xt]) continue;
-            
-            q.emplace(xt);
-            mark[xt] = 1;
+            if (!mark[xt]) {
+                q.emplace(xt);
+                mark[xt] = 1;
+            }
         }
     }
 }
 
 int main() {
-
     return 0;
 }

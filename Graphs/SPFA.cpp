@@ -1,24 +1,26 @@
 /*
-    Algorithm: Shortest Path Faster Algorithm (SPFA)
-    Complexity: O(k * E) [where k is constant that depends on graph]
+    Name: Shortest-Path-Faster-Algorithm (SPFA)
+    
+    Time complexity: O(N * M)
+    Space complexity: O(N + M)
 
 * * *
-Very efficient in practice.
+    Very efficient in practice.
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
 const int N = 1e5 + 10;
-const int inf = 1e9 + 10;
+const int INF = 1e9 + 10;
 
 vector<pair<int, int>> g[N];
 int dist[N];
 bool in[N];
 
-void SPFA(int n, int source) {
+void SPFA(int n, int source = 1) {
     queue<int> q;
-    fill(dist + 1, dist + n + 1, inf);
+    fill(dist + 1, dist + n + 1, INF);
 
     for (q.emplace(source), dist[source] = 0, in[source] = 1; q.size(); q.pop()) {
         int v = q.front();
@@ -43,13 +45,12 @@ void SPFA(int n, int source) {
 int main() {
     int n, m;
     scanf("%d%d", &n, &m);
-
-    for (int i = 0, a, b, c; i < m; i++) {
-        scanf("%d%d%d", &a, &b, &c);
-        g[a].emplace_back(b, c);
+    for (int i = 0, u, v, w; i < m; i++) {
+        scanf("%d%d%d", &u, &v, &w);
+        g[u].emplace_back(v, w);
     }
 
-    SPFA(n, 1);
+    SPFA(n);
 
     return 0;
 }

@@ -1,8 +1,8 @@
 /*
-    Cache-friendly implementation of Ford-Fulkerson algorithm
-    Complexities [where E is number of edges]:
-        -Time: O(MAX_FLOW * E)
-        -Space: O(E)
+    Name: Ford-Fulkerson algorithm
+
+    Time complexity: O(max_flow * M)
+    Space complexity: O(M)
 */
 
 #include <bits/stdc++.h>

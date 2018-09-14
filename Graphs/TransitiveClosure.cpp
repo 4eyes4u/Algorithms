@@ -1,12 +1,14 @@
 /*
-    Algorithm: Floyd-Warshall algorithm for calculating transitive closure of digraph
-    Complexity: O(V ^ 3) [where V is number of nodes]
+    Name: Transitive closure of a graph (Floyd-Warshall algorithm)
+
+    Time complexity: O(N ^ 3)
+    Space complexity: O(N ^ 2)
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N = 500 + 10;
+const int N = 5e2 + 10;
 
 int g[N][N], f[N][N];
 
@@ -27,21 +29,12 @@ void FloydWarshall(int n) {
 int main() {
 	int n, m;
     scanf("%d%d", &n, &m);
+    for (int i = 0, u, v; i < m; i++) {
+        scanf("%d%d", &u, &v);
+        g[u][v] = 1;
+    }
+
+    FloydWarshall(n);
     
-    for (int i = 0, a, b; i < m; i++) {
-        scanf("%d%d", &a, &b);
-        
-        g[a][b] = 1;
-    }
-
-    FloydWarshall();
-
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= n; j++)
-            printf("%d ", f[i][j]);
-
-        puts("");
-    }
-
     return 0;
 }
