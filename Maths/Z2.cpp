@@ -1,62 +1,44 @@
 /*
-    Algorithm: Generating basis of Z^{n}_2
-    Complexity: O(n) per operation [where n is dimension]
+    Name: Generating basis of Z^{DIM}_2
 
-    * * *
-    Implemented vector space has DIM = 32 (int).
+    Time complexity: O(DIM) per operation
+    Space complexity: O(DIM)
+
+* * *
+    Implemented vector space has DIM = 32.
     First element is the biggest.
-    Getting min is equivalent to making linear combination.
+    Linear combination is equivalent to taking minimum.
 */
 
 
 #include <bits/stdc++.h>
 using namespace std;
 
-class VectorSpace {
-private:
-    vector<int> basis;
+vector<int> basis;
 
-public:
-    VectorSpace () {
-        basis = vector<int>();
+void insert(int x) {
+    if (basis.empty())
+        basis.emplace_back(x);
+    
+    for (auto e : basis)
+        x = min(x, x ^ e);
+
+    if (x) {
+        basis.emplace_back(x);
+
+        for (int i = basis.size() - 1; i > 0; i--)
+            if (basis[i] > basis[i - 1])
+                swap(basis[i], basis[i - 1]);
     }
+}
 
-    void insert(int x) {
-        if (basis.empty()) return void(basis.emplace_back(x));
+int get_min(int x) {
+    for (auto e : basis)
+        x = min(x, x ^ e);
 
-        for (auto e: basis) x = min(x, x ^ e);
-
-        if (x) {
-            basis.push_back(x);
-
-            for (int i = basis.size() - 1; i > 0; i--)
-                if (basis[i] > basis[i - 1])
-                    swap(basis[i], basis[i - 1]);
-        }
-    }
-
-    int get_min (int x) {
-        for (auto e: basis) x = min(x, x ^ e);
-
-        return x;
-    }
-
-    int kth (int k) {
-        if (k > basis.size()) return -1;
-        return basis[k - 1];
-    }
-};
+    return x;
+}
 
 int main() {
-    VectorSpace *Z2 = new VectorSpace();
-    Z2 -> insert(4);
-    Z2 -> insert(7);
-    Z2 -> insert(8);
-    Z2 -> insert(12);
-    Z2 -> insert(17);
-
-    for (int i = 1; i <= 10; i++) printf("%d\n", Z2 -> kth(i));
-    printf("%d\n", Z2 -> get_min(22));
-
     return 0;
 }
