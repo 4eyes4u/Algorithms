@@ -18,7 +18,7 @@ const int N = 1e5 + 10;
 
 int a[N];
 
-int quick_select(int l, int r, int k) {
+int quickselect(int l, int r, int k) {
     if (l == r)
         return a[l];
 
@@ -31,11 +31,11 @@ int quick_select(int l, int r, int k) {
     }
 
     if (pos - l < k)
-        return quick_select(pos + 1, r, k - (pos - l + 1));
+        return quickselect(pos + 1, r, k - (pos - l + 1));
     else if (pos - l == k)
         return pivot;
     else
-        return quick_select(l, pos - 1, k);
+        return quickselect(l, pos - 1, k);
 }
 
 int main() {
@@ -45,7 +45,7 @@ int main() {
     for (int i = 0; i < n; i++)
         scanf("%d", a + i);
     
-    printf("%d\n", quick_select(0, n - 1, k));
+    printf("%d\n", quickselect(0, n - 1, k));
 
     return 0;
 }
