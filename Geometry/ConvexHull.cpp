@@ -1,39 +1,47 @@
 /*
-   Algorithm: Andrew's monotone chain convex hull algorithm
-   Complexity: O(n*logn) [where n is number of points]
+    Name: Convex hull of set of points (Andrew)
+
+    Time complexity: O(N * logN)
+    Space complexity: O(N)
 */
 
 #include <bits/stdc++.h>
-#define x first
-#define y second
 using namespace std;
 
-typedef pair<int, int> pt;
+struct Point {
+    int x, y;
 
-long long ccw(pt o, pt a, pt b) {
-        return 1ll * (a.x - o.x) * (b.y - o.y) - 1ll * (b.x - o.x) * (a.y - o.y);
+    bool operator < (const Point &other) const {
+        if (x == other.x)
+            return y < other.y;
+        return x < other.x;
+    }
+};
+
+vector<Point> pts;
+
+long long ccw(Point O, Point A, Point B) {
+    return 1ll * (A.x - O.x) * (B.y - O.y) - (B.x - O.x) * (A.y - O.y);
 }
 
-vector<pt> convexHull(vector<pt> pts) {
-        vector<pt> hull;
-        sort(pts.begin(), pts.end());
+void convex_hull(vector<Point> &pts, vector<Point> &hull) {
+    hull.clear();
+    sort(pts.begin(), pts.end());
 
-        for (int i = 0; i < 2; i++) {
-                auto init_size = hull.size();
+    for (int i = 0; i < 2; i++) {
+        int init_size = hull.size();
 
-                for (auto xt : pts) {
-                        while (hull.size() >= 2 + init_size && ccw(hull[hull.size() - 2], hull.back(), xt) <= 0)
-                                hull.pop_back();
-                        hull.push_back(xt);
-                }
-
+        for (auto xt : pts) {
+            while(hull.size() >= 2 + init_size && ccw(hull[hull.size() - 2], hull.back(), xt) <= 0)
                 hull.pop_back();
-                reverse(pts.begin(), pts.end());
+            hull.emplace_back(xt);
         }
 
-        return hull;
+        hull.pop_back();
+        reverse(pts.begin(), pts.end());
+    }
 }
 
 int main() {
-        return 0;
+    return 0;
 }

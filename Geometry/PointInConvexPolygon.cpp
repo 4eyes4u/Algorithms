@@ -1,9 +1,11 @@
 /*
-  Algoithm: Check whether given pont belong to convex polygon
-  Complexity: O(logn) [where n is number of vertices of polygon]
+    Name: Check whether point belong to convex polygon
+
+    Time complexity: O(logN)
+    Space complexity: O(N)
 
 * * *
-Convex polygon must be given in counter-clockwise order.
+    Convex polygon must be given in counter-clockwise order.
 */
 
 #include <bits/stdc++.h>
@@ -11,38 +13,47 @@ Convex polygon must be given in counter-clockwise order.
 #define y second
 using namespace std;
 
-typedef pair<int, int> pt;
+const int N = 1e5 + 10;
 
-long long ccw (pt o, pt a, pt b) {
-  return (a.x-o.x)*(b.y-o.y)-(b.x-o.x)*(a.y-o.y);
+struct Point {
+    int x, y;
+} pts[N];
+
+long long ccw(Point O, Point A, Point B) {
+    return 1ll * (A.x - O.x) * (B.y - O.y) - (B.x - O.x) * (A.y - O.y);
 }
 
-bool in_triangle (pt a, pt b, pt c, pt t) {
-  return ((ccw(a, b, t)>=0 && ccw(b, c, t)>=0 && ccw(c, a, t)>=0) || (ccw(a, b, t)<=0 && ccw(b, c, t)<=0 && ccw(c, a, t)<=0));
+bool in_triangle(Point A, Point B, Point C, Point P) {
+    bool left = ccw(A, B, P) >= 0 && ccw(B, C, P) >= 0 && ccw(C, A, P) >= 0;
+    bool right = ccw(A, B, P) <= 0 && ccw(B, C, P) <= 0 && ccw(C, A, P) <= 0; 
 }
 
-bool point_in_polygon (pt *p, int n, pt t) {
-  p[n]=p[0];
-  int l=1, r=n-1, mid, last=-1;
+bool check(int n, Point P) {
+    pts[n] = pts[0];
+    int l = 1, r = n - 1, last = -1;
 
-  while (l<=r) {
-    mid=(l+r)/2;
+    while (l <= r) {
+        int mid = (l + r) / 2;
 
-    if (ccw(p[0], p[mid], t)>=0) {
-      l=mid+1;
-      last=mid;
+        if (ccw(pts[0], pts[mid], P) >= 0) {
+            l = mid + 1;
+            last = mid;
+        }
+        else
+            r = mid - 1;
     }
-    else r=mid-1;
-  }
 
-  return last!=-1 && in_triangle(p[0], p[last], p[last+1], t);
+    return last != -1 && in_triangle(pts[0], pts[last], pts[last + 1], P);
 }
 
 int main() {
-  pt p[]={{0, 0}, {2, 0}, {2, 2}, {0, 2}};
-  pt t1={1, 1}, t2={5, 5};
-  printf ("%d\n", point_in_polygon(p, 4, t1));
-  printf ("%d\n", point_in_polygon(p, 4, t2));
+    int n;
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+        scanf("%d%d", &pts[i].x, &pts[i].y);
 
-  return 0;
+    Point P = {0, 0};
+    printf("%d\n", check(n, P));
+
+    return 0;
 }

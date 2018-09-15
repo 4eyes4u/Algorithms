@@ -1,50 +1,50 @@
 /*
-  Algorithm: Segment intersection
-  Complexity: O(1)
+    Name: Segment intersection in 2D
+
+    Time complexity: O(1)
+    Space complexity: O(1)
 */
 
 #include <bits/stdc++.h>
-#define x first
-#define y second
 using namespace std;
 
-typedef pair<int, int> pt;
+struct Point {
+    int x, y;
+};
 
-long long ccw (pt o, pt a, pt b)
-{
-  return 1ll*(a.x-o.x)*(b.y-o.y)-1ll*(b.x-o.x)*(b.y-o.y);
+long long ccw(Point O, Point A, Point B) {
+    return 1ll * (A.x - O.x) * (B.y - O.y) - (B.x - O.x) * (A.y - O.y);
 }
 
-bool isCollinear (pt a, pt b, pt c)
-{
-  return ccw(a, b, c)==0;
+bool is_collinear(Point A, Point B, Point C) {
+    return ccw(A, B, C) == 0;
 }
 
-bool isLeft (pt a, pt b, pt c)
-{
-  return ccw(a, b, c)>0;
+bool is_left(Point A, Point B, Point C) {
+    return ccw(A, B, C) > 0;
 }
 
-bool opposite (pt a, pt b, pt c, pt d)
-{
-  return isLeft(a, b, c)!=isLeft(a, b, d);
+bool opposite(Point A, Point B, Point C, Point D) {
+    return is_left(A, B, C) != is_left(A, B, D);
 }
 
-bool isBetween (pt a, pt b, pt c)
-{
-  return min(a.x, b.x)<=c.x && c.x<=max(a.x, b.x) && min(a.y, b.y)<=c.y && c.y<=max(a.y, b.y);
+bool is_between(Point A, Point B, Point C) {
+    return min(A.x, B.x) <= C.x && C.x <= max(A.x, B.x) && min(A.y, B.y) <= C.y && C.y <= max(A.y, B.y);
 }
 
-bool intersect (pt a, pt b, pt c, pt d)
-{
-  if (isCollinear(a, b, c) && isBetween(a, b, c)) return true;
-  if (isCollinear(a, b, d) && isBetween(a, b, d)) return true;
-  if (isCollinear(c, d, a) && isBetween(c, d, a)) return true;
-  if (isCollinear(c, d, b) && isBetween(c, d, b)) return true;
-  return opposite(a, b, c, d) && opposite(c, d, a, b);
+bool intersect(Point A, Point B, Point C, Point D) {
+    if (isCollinear(A, B, C) && isBetween(A, B, C))
+        return true;
+    if (isCollinear(A, B, D) && isBetween(A, B, D))
+        return true;
+    if (isCollinear(C, D, A) && isBetween(C, D, A))
+        return true;
+    if (isCollinear(C, D, B) && isBetween(C, D, B))
+        return true;
+    
+    return opposite(A, B, C, D) && opposite(C, D, A, B);
 }
 
-int main()
-{
-  return 0;
+int main() {
+    return 0;
 }
