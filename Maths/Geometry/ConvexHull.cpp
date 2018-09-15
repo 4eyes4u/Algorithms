@@ -1,5 +1,5 @@
 /*
-    Name: Convex hull of set of points (Andrew)
+    Name: Convex hull of set of points (Andrew's algorithm)
 
     Time complexity: O(N * logN)
     Space complexity: O(N)
