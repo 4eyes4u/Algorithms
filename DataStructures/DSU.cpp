@@ -1,42 +1,40 @@
 /*
-Data structure: DSU
-Time complexity:
-    Init O(n) [where n is number of sets]
-    Find Parent O(logn) [where n is number of sets]
-    Unite O(logn) [where n is number of sets]
-Memory complexity: O(n) [where n is number of sets]
+    Name: Disjoint-set-union (DSU)
+    
+    Time complexity:
+        -O(N) for initialization
+        -O(logN) per operation
 
 * * *
-Without 'union by rank' heuristic.
+    Without 'union by rank' heuristic.
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N=1e5+10;
+const int N = 1e5 + 10;
 
-int dsu[N], n;
+int dsu[N];
 
-void init ()
-{
-    for (int i=1;i<=n;i++) dsu[i]=i;
+void init(int n) {
+    for (int i = 1; i <= n; i++)
+        dsu[i] = i;
 }
 
-int f (int x)
-{
-    if (dsu[x]==x) return x;
-    return dsu[x]=f(dsu[x]);
+int find(int x) {
+    if (dsu[x] == x)
+        return x;
+    return dsu[x] = find(dsu[x]);
 }
 
-void unite (int x, int y)
-{
-    dsu[f(x)]=f(y);
+void unite(int x, int y) {
+    dsu[find(x)] = find(y);
 }
 
-int main()
-{
-    scanf ("%d", &n);
-    init ();
+int main() {
+    int n;
+    scanf("%d", &n);
+    init(n);
 
     return 0;
 }

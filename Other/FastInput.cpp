@@ -1,5 +1,5 @@
 /*
-    Fast input
+    Name: Fast input
 */
 
 #include <bits/stdc++.h>

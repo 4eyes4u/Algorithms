@@ -1,29 +1,45 @@
 /*
-    Algorithm: Binary search
-    Complexity: O(logn) [where n is length of range]
+    Name: Binary search
+
+    Time complexity: O(logN)
+    Space complexity: O(1)
 
 * * *
-Searching for rightmost number smaller than x in given range.
+    Searching for rightmost number smaller than X in given range.
+    Array HAS TO BE monotone.
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-int binary_search(int *a, int left, int right, int x) {
+const int N = 1e5 + 10;
+
+int a[N];
+
+int binary_search(int l, int r, int x) {
     int ret = -1;
     
-    while (left <= right) {
-        int mid = left + (right - left) / 2; // in case of overflow
-        if (a[mid] <= x) ret = mid, left = mid + 1;
-        else right = mid - 1;
+    while (l <= r) {
+        int mid = (l + r) / 2;
+
+        if (a[mid] <= x) {
+            ret = mid;
+            l = mid + 1;
+        }
+        else
+            r = mid - 1;
     }
 
     return ret;
 }
 
 int main() {
-    int a[] = {1, 3, 3, 3, 5, 6, 7, 8, 9, 10};
-    printf("%d\n", binary_search(a, 0, sizeof(a) / sizeof(int), 5)); // output should be 4
+    int n;
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+        scanf("%d", a + i);
+    
+    printf("%d\n", binary_search(0, n - 1, 20));
 
     return 0;
 }
