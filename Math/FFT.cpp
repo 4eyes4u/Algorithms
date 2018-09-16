@@ -105,7 +105,8 @@ int main() {
     vector<int> v(s.length());
 
     // transforming array of chars to array of ints
-    transform(s.begin(), s.end(), v.rbegin(), [](char c) -> int { return atoi(&c); });
+    transform(s.begin(), s.end(), v.rbegin(),
+        [](char c) -> int { return atoi(&c); });
 
     int k;
     cin >> k;

@@ -1,6 +1,8 @@
 /*
-  Algorithm: Dial's algorithm
-  Complexity: O(E + C * V) [where C is upper bound for edge weight, E number of edges and V number of nodes in the graph]
+    Name: Dial's algorithm
+
+    Time complexity: O(M + N * C)
+    Space complexity: O(N * C)
 
 * * *
 Can be used when C is small number.
@@ -17,7 +19,7 @@ list<int> l[C * N];
 list<int>::iterator it[N];
 int dist[N];
 
-inline int next_bucket(int idx) {
+inline int next_bucket(int n, int idx) {
     for (int i = idx; i <= C * n; i++)
         if (l[i].size())
             return i;
@@ -25,7 +27,7 @@ inline int next_bucket(int idx) {
     return -1;
 }
 
-void Dial(int source, int n) {
+void Dial(int n, int source = 1) {
     for (int i = 1; i <= n; i++) {
         if (i != source) {
             dist[i] = C * n + 1;
@@ -40,8 +42,9 @@ void Dial(int source, int n) {
 
     int bucket = 0;
     while (1) {
-        bucket = next_bucket(bucket);
-        if (bucket == -1) break;
+        bucket = next_bucket(n, bucket);
+        if (bucket == -1)
+            break;
 
         int v = *l[bucket].begin();
         l[bucket].erase(l[bucket].begin());
@@ -62,16 +65,16 @@ void Dial(int source, int n) {
 
 int main() {
     int n, m;
-    cin >> n >> m;
+    scanf("%d%d", &n, &m);
 
-    for (int i = 0, a, b, c; i < m; i++) {
-        cin >> a >> b >> c;
+    for (int i = 0, u, v, w; i < m; i++) {
+        scanf("%d%d%d", &u, &v, &w);
 
-        g[a].emplace_back(b, c);
-        g[b].emplace_back(a, c);
+        g[u].emplace_back(v, w);
+        g[v].emplace_back(u, w);
     }
 
-    Dial(1, n);
+    Dial(n);
 
     return 0;
 }

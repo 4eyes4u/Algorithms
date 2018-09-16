@@ -5,14 +5,13 @@
     Space complexity: O(N + M)
     
 * * *
-    DSU is implented with path compression and without union by rank.
+    DSU is implented with 'path compression' and without 'union by rank'.
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
 const int N = 1e5 + 10;
-const int M = 1e6 + 10;
 
 struct Edge {
     int u, v, w;
@@ -38,7 +37,7 @@ void unite(int x, int y) {
 long long Kruskal(int n, int m) {
     long long mst = 0;
     sort(edges.begin(), edges.end(),
-        [](const Edge &a, const Edge &b) -> bool { return a.w < b.w; });
+        [](const Edge &a, const Edge &b) { return a.w < b.w; });
 
 
     for (auto edge : edges) {

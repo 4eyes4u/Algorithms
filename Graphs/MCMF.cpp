@@ -1,75 +1,135 @@
 /*
-    Algorithm: MCMF with Bellman-Ford
-    Complexity: O(V ^ 6) in general
-                O(V ^ 4) for bipartite graph [where V is number of nodes in the network]
+    Name: Minimum-cost-maximum-flow with Bellman-Ford
+
+    Time complexity:
+        -O(N ^ 6) worst case
+        -O(N ^ 4) for bipartite graph
+    Space complexity: O(N + M)
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-namespace MCMF {
-    const int N = 1e2 + 10;
-    const int M = N * N;
-    const int inf = 1e9;
+const int N = 1e2 + 10;
 
-    int V = 0, E = 0, source, sink;
+struct Edge {
+    /*
+        opposite is index of edge that is opposite
+        to the given one in the residual graph
+    */
+    int v, cap, flow, cost, opposite;
+};
+
+vector<Edge> g[N];
+int n, m, src, snk;
+
+void add_edge(int u, int v, int cap1, int cost, int cap2 = 0) {
+    int opposite_u = g[v].size();
+    int opposite_v = g[u].size();
+    g[u].push_back({v, cap1, 0, cost, opposite_u});
+    g[v].push_back({u, cap2, 0, -cost, opposite_v});
+}
+
+namespace MCMF {
+    const int INF = 1e9;
     int dist[N], parent[N];
 
-    struct Edge {
-        int u, v, cap, flow, cost;
-    } edges[M];
-
-    void init(int _V, int _source, int _sink) {
-        V = _V;
-        source = _source;
-        sink = _sink;
-    }
-
-    inline void add_edge(int u, int v, int cap, int cost) {
-        edges[E++] = {u, v, cap, 0, cost};
-        edges[E++] = {v, u, 0, 0, -cost};
-    }
-
-    inline int push_unit() { // Bellman-Ford
-        fill(dist, dist + V, inf);
-        dist[source] = 0;
+    int push_unit() {
+        fill(dist, dist + n + 1, INF);
+        dist[src] = 0;
 
         bool flag = 1;
         while (flag) {
             flag = 0;
-            for (int i = 0; i < E; i++) {
-                Edge e = edges[i];
-                int u = e.u, v = e.v;
+            for (int u = 0; u <= n; u++) {
+                if (dist[u] != INF) {
+                    for (int i = 0; i < g[u].size(); i++) {
+                        Edge edge = g[u][i];
 
-                if (e.cap == e.flow || dist[u] == inf || dist[v] <= dist[u] + e.cost)
-                    continue;
-                
-                dist[v] = dist[u] + e.cost;
-                parent[v] = i;
-                flag = 1;
+                        if (edge.cap > edge.flow && dist[edge.v] <= dist[u]) {
+                            dist[edge.v] = dist[u] + edge.cost;
+                            parent[edge.v] = i;
+                            flag = 1;
+                        }
+                    }
+                }
             }
         }
 
-        int node = sink;
-        if (dist[sink] == inf) return 0;
-        while (node != source) {
-            int idx = parent[node];
-            edges[idx].flow++;
-            edges[idx ^ 1].flow--;
-            node = edges[idx].u;
+        if (dist[snk] == INF)
+            return 0;
+        
+        int u = snk;
+        while (u != src) {
+            int edge_idx = parent[u];
+            g[u][edge_idx].flow++;
+            g[g[u][edge_idx].v][g[u][edge_idx].opposite].flow--;
+            u = g[u][edge_idx].v;
         }
-
-        return dist[sink];
+        
+        return dist[snk];
     }
 
     int push_flow(int flow) {
-        int min_cost= 0;
-        while (flow--) min_cost += push_unit();
+        for (int u = 0; u <= n; u++)
+            for (auto &edge : g[u])
+                edge.flow = 0;
 
+        int min_cost = 0;
+        while (flow--)
+            min_cost += push_unit();
+        
         return min_cost;
     }
 }
 
+namespace FordFulkerson {
+    const int INF = 1e9;
+    bool mark[N];
+
+    int dfs(int u, int min_cap) {
+        mark[u] = 1;
+        if (u == snk || !min_cap)
+            return min_cap;
+        
+        for (auto &edge : g[u]) {
+            if (!mark[edge.v] && edge.cap > edge.flow) {
+                int augment = dfs(edge.v, min(min_cap, edge.cap - edge.flow));
+
+                if (augment) {
+                    edge.flow += augment;
+                    g[edge.v][edge.opposite].flow -= augment;
+                    return augment;
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    int max_flow() {
+        int ret = 0, flow = 0;
+        
+        do {
+            memset(mark, 0, sizeof(mark));
+            flow = dfs(src, INF);
+            ret += flow;
+        } while(flow);
+
+        return ret;
+    }
+}
+
 int main() {
+    scanf("%d%d%d%d", &n, &m, &src, &snk);
+    for (int i = 0, u, v, cap, cost; i < m; i++) {
+        scanf("%d%d%d%d", &u, &v, &cap, &cost);
+        add_edge(u, v, cap, cost);
+    }
+
+    int max_flow = FordFulkerson::max_flow();
+    int min_cost = MCMF::push_flow(max_flow);
+    printf("%d\n", min_cost);
+
     return 0;
 }
