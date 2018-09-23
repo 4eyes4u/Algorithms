@@ -1,11 +1,12 @@
 /*
-  Data structure: Ordered statistic set
-  Time complexity: O(logn) per operation [where n is number of elements in set]
-  Memory complexity: O(n) [where n is number of elements in set]
+    Name: Ordered statistic set
+
+    Time complexity: O(logN) per operation
+    Space complexity: O(N)
 
 * * *
-set.order_of_key -- returns order of given key that does not have to be in set.
-set.find_by_order -- returns iterator of element that is on given position in sorted array of keys.
+    set.order_of_key -- returns order of given key that does not have to be in set
+    set.find_by_order -- returns iterator of element that is on given position in sorted array of keys
 */
 
 #include <bits/stdc++.h>
@@ -25,18 +26,17 @@ myset;
 
 myset skup;
 
-int main()
-{
-  skup.insert(5);
-  skup.insert(1);
-  skup.insert(100);
-  skup.insert(15);
-  skup.insert(20);
+int main() {
+    skup.insert(5);
+    skup.insert(1);
+    skup.insert(100);
+    skup.insert(15);
+    skup.insert(20);
 
-  printf ("%d\n", skup.order_of_key(17));
-  printf ("%d\n", skup.order_of_key(15));
-  printf ("%d\n", *skup.find_by_order(0));
-  printf ("%d\n", *skup.find_by_order(3));
+    printf("%d\n", skup.order_of_key(17));
+    printf("%d\n", skup.order_of_key(15));
+    printf("%d\n", *skup.find_by_order(0));
+    printf("%d\n", *skup.find_by_order(3));
 
-  return 0;
+    return 0;
 }
