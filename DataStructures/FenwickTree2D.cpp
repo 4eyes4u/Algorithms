@@ -1,15 +1,17 @@
 /*
-    Data structure: Fenwick tree [2D]
-    Time complexity: O(logn * logm) per operation [where n is range of 1st and m is range of 2nd dimension]
-    Memory complexity: O(n * m) [where is size of 1st and m size of 2nd dimension]
+    Name: Fenwick tree [2D]
+
+    Time complexity: O(logN * logM) per operation
+    Space complexity: O(N * M)
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
 const int N = 1e3 + 10;
+const int M = 1e3 + 10;
 
-int bit[N][N], n, m;
+int bit[N][M], n, m;
 
 void update(int row, int c, int val) {
     for (; row <= n; row += row & -row) {

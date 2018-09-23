@@ -1,58 +1,74 @@
 /*
-  Data strucutre: Suffix array
-  Complexity:
-    Init: O(n*log^2n) [where n is length of string]
-    LCP: O(logn) [wehre n is length of string]
-  Space: O(nlogn) [where n is length of string]
+    Name: Suffix array & LCP array
+
+    Time complexity: O(N * log^2(N))
+    Space complexity: O(N)
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-class SuffixArray {
-private:
-  int **a;
-  pair<long long, int> *p;
-  int n, m, k;
+const int N = 1e5 + 10;
+char s[N];
+int sa[N], lcp[N], pos[N], tmp[N];
+int n, t;
 
-public:
-  SuffixArray (char *s, int length) {
-    n=length, m=ceil(log2(length))+1;
-    a=(int **)calloc(n+10, sizeof(int *));
-    for (int i=0;i<n;i++) a[i]=(int *)calloc(m+1, sizeof(int));
-    p=(pair<long long, int> *)calloc(n, sizeof(pair<long long, int>));
+bool suffix_compare(int i, int j) {
+    if (pos[i] != pos[j])
+        return pos[i] < pos[j];
+    
+    i += t, j += t;
+    if (i < n && j < n)
+        return pos[i] < pos[j];
+    return i > j;
+}
 
-    for (int i=0;i<n;i++) a[i][0]=s[i]+1;
-
-    for (k=0;(1<<k)<2*n;k++) {
-      for (int i=0;i<n;i++) p[i]={(1ll*a[i][k])<<30, i};
-      for (int i=1<<k;i<n;i++) p[i-(1<<k)].first+=a[i][k];
-      sort(p, p+n);
-
-      int pos=1;
-      for (int i=0;i<n;i++) {
-        pos+=i && p[i-1].first<p[i].first;
-        a[p[i].second][k+1]=pos;
-      }
-    }
-  }
-
-  int lcp (int u, int v) {
-    int ret=0;
-
-    for (int i=k-1;i>=0;i--) {
-      int len=1<<i;
-      if (u+len<=n && v+len<=n && a[u][i]==a[v][i]) u+=len, v+=len, ret+=len;
+void init_sa() {
+    for (int i = 0; i < n; i++) {
+        sa[i] = i;
+        pos[i] = s[i];
     }
 
-    return ret;
-  }
-};
+    for (t = 1; t <= 2 * n; t *= 2) {
+        sort(sa, sa + n, suffix_compare);
+
+        for (int i = 0; i < n - 1; i++) {
+            tmp[i + 1] = tmp[i];
+            if (suffix_compare(sa[i], sa[i + 1]))
+                tmp[i + 1]++;
+        }
+
+        for (int i = 0; i < n; i++)
+            pos[sa[i]] = tmp[i];
+        
+        if (tmp[n - 1] == n - 1)
+            break;
+    }
+}
+
+void init_lcp() {
+    for (int i = 0, k = 0; i < n; i++) {
+        if (pos[i] != n - 1) {
+            int j = sa[pos[i] + 1];
+            
+            while (s[i + k] == s[j + k])
+                k++;
+
+            lcp[pos[i]] = k;
+            if (k) k--;
+        }
+    }
+}
 
 int main() {
-  char s[] = "banana";
-  SuffixArray *sa=new SuffixArray(s, 6);
-  printf ("%d\n", sa->lcp(1, 3));
+    strcpy(s, "banana");
+    n = strlen(s);
+    init_sa();
+    init_lcp();
 
-  return 0;
+    for (int i = 0; i < n; i++)
+        printf("%d ", sa[i]);
+    puts("");
+
+    return 0;
 }

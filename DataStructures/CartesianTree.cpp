@@ -1,86 +1,82 @@
 /*
-  Data structure: Cartesian tree
-  Memory complexity: O(n) [whre n is number of nodes]
+    Name: Cartesian tree (not to be confused with treap)
+
+    Time complexity: O(N) for initialization
+    Space complexity: O(N)
 
 * * *
-
-Useful for constructing suffix tree, suffix array, treap...
+    Useful for constructing suffix tree, suffix array, treap etc.
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
 struct Node {
-  Node *l, *r, *p;
-  int val, idx;
+    Node *l, *r, *p;
+    int val, idx;
 
-  Node(): l(), r(), p(), val(), idx() {}
-  Node(int _val, int _idx): l(), r(), p(), val(_val), idx(_idx) {}
+    Node(int val, int idx) {
+        this->val = val;
+        this->idx = idx;
+        this->l = nullptr;
+        this->r = nullptr;
+        this->p = nullptr; 
+    }
 };
 
-class CartesianTree {
-private:
-  Node *root, *last;
+Node *root, *last;
 
-  void add(Node *v, Node *prev_parent, Node *prev) {
+void add(Node *v, Node *prev_parent, Node *prev) {
     if (!prev_parent) {
-      v -> l = prev;
-      prev ->p = v;
-      root = v;
+        v->l = prev;
+        prev->p = v;
+        root = v;
     }
-    else if (prev_parent -> val <= v -> val) {
-      prev_parent -> r = v;
-      v -> l = prev;
-      v -> p = prev_parent;
-      prev -> p = v;
-    } else add(v, prev_parent -> p, prev_parent);
-  }
+    else if (prev_parent->val <= v->val) {
+        prev_parent->r = v;
+        v->l = prev;
+        v->p = prev_parent;
+        prev->p = v;
+    }
+    else add(v, prev_parent->p, prev_parent);
+}
 
-  void in_order (Node *v) {
-    if (v -> l) in_order(v -> l);
-    printf("%d\n", v -> val);
-    if (v -> r) in_order(v -> r);
-  }
-  
-public:
-  CartesianTree () {
-    root = nullptr;
-    last = nullptr;
-  }
-
-  void add(int val, int idx) {
+void add(int val, int idx) {
     Node *v = new Node(val, idx);
 
-    if (!root) root=v;
-    else if (last -> val <= v->val) {
-      v -> p = last;
-      last -> r = v;
-    } else add(v, last -> p, last);
+    if (!root)
+        root = v;
+    else if (last->val <= v->val) {
+        v->p = last;
+        last->r = v;
+    }
+    else add(v, last->p, last);
 
     last = v;
-  }
+}
 
-  void in_order() {
-    in_order(root);
-  }
-};
+void in_order(Node *v) {
+    if (!v) return;
+
+    in_order(v->l);
+    printf("%d\n", v->val);
+    in_order(v->r);
+}
 
 int main() {
-  CartesianTree *tree = new CartesianTree();
+    add(9, 1);
+    add(3, 2);
+    add(7, 3);
+    add(1, 4);
+    add(8, 5);
+    add(12, 6);
+    add(10, 7);
+    add(20, 8);
+    add(15, 9);
+    add(18, 10);
+    add(5, 11);
+    
+    in_order(root);
 
-  tree -> add(9, 1);
-  tree -> add(3, 2);
-  tree -> add(7, 3);
-  tree -> add(1, 4);
-  tree -> add(8, 5);
-  tree -> add(12, 6);
-  tree -> add(10, 7);
-  tree -> add(20, 8);
-  tree -> add(15, 9);
-  tree -> add(18, 10);
-  tree -> add(5, 11);
-
-  tree -> in_order();
-
-  return 0;
+    return 0;
 }
