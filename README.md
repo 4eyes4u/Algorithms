@@ -22,7 +22,7 @@ Correctness of any implementation is _not guaranteed_.
 * [Transitive closure](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/TransitiveClosure.cpp) - Floyd-Warshall algorithm used for calculating transitive closure of the graph.
 * [Heavy-light decomposition](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Tree/HLD.cpp) - Decomposition of the tree in chains of nodes such that traversal between any pair of nodes never use more than O(logN) chains.
 * [Binary lifting](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Tree/LCA.cpp) - Can be used to find lowest common ancestor (LCA) of two nodes in the tree.
-* [Centroid decomposition](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Tree/CentroidDecomposition.cpp) - Decimposition of the tree by recursively finding centroids (after centreoid is removed every component is no more than half of original size).
+* [Centroid decomposition](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Tree/CentroidDecomposition.cpp) - Decimposition of the tree by recursively finding centroids (after centroid is removed every component is no more than half of original size).
 * [BST merging](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Tree/MergingBST.cpp) - Method for merging smaller binary search trees into larger while performing traversal on the tree.
 * [Center of the tree](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Tree/Center.cpp) - Algorithm for finding a center of the tree. Ultimately, diameter and radius is found.
 
