@@ -78,8 +78,9 @@ Correctness of any implementation is _not guaranteed_.
 * [Longest increasing subsequence](https://github.com/4eyes4u/Algorithms/blob/master/DynamicProgramming/LIS.cpp) - Efficient LIS implementation.
 * [Kadane's algorithm](https://github.com/4eyes4u/Algorithms/blob/master/DynamicProgramming/Kadane.cpp) - Finding maximum sum of consecutive array elements of any length.
 * [Bitset trick](https://github.com/4eyes4u/Algorithms/blob/master/DynamicProgramming/BitsetTrick.cpp) - Improving time and space complexity of knapsack problem by using `std::bitset` with constant factor less than 1.
-# License
-MIT
 
 ### Other
 * [Fast input](https://github.com/4eyes4u/Algorithms/tree/master/Other) - Use it if input is very large and TL is tight.
+
+# License
+MIT
