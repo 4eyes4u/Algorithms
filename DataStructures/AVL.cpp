@@ -1,7 +1,7 @@
 /*
     Name: AVL tree
 
-    Time complexity: O(N * logN)
+    Time complexity: O(logN) per operation
     Space complexity: O(N)
 */
 
