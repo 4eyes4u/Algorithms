@@ -70,7 +70,7 @@ int main() {
     }
 
     Tarjan(n);
-    // toposort of the condesation graph as a byproduct
+    // toposort of the condensation graph as a byproduct
     reverse(topo.begin(), topo.end());
 
     return 0;
