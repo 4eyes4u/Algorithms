@@ -20,7 +20,7 @@ Correctness of any implementation is __not guaranteed__.
 * [Bellman-Ford MCMF](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/MCMF.cpp) - Algorithm used for calculating minimal-cost-maximum-flow. Effective on bipartite graph.
 * [SPFA](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/SPFA.cpp) - Single-source-shortest-path algorithm based on Bellman-Ford algorithm.
 * [Hopcroft-Karp algorithm](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/HopcroftKarp.cpp) - Optimal bipartite matching.
-* [Hierholzer algorithm](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Hierholzer.cpp) - Algorithm for fiding Eulerian path in a graph.
+* [Hierholzer's algorithm](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Hierholzer.cpp) - Algorithm for fiding Eulerian path in a graph.
 * [Topological sort](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/TopoSort.cpp) - Kahn's algorithm for topological sort of a DAG.
 * [Transitive closure](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/TransitiveClosure.cpp) - Floyd-Warshall algorithm used for calculating transitive closure of the graph.
 * [Heavy-light decomposition](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Tree/HLD.cpp) - Decomposition of the tree in chains of nodes such that traversal between any pair of nodes never use more than O(logN) chains.
