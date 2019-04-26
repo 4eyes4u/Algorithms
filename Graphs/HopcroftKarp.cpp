@@ -21,7 +21,6 @@ std::vector<int> g[N];
 int match[N], dist[N];
 
 bool bfs(const int &nu) {
-    // no vertex from V will be in queue, only ones form U will
     std::queue<int> q;
     for (int i = 1; i <= nu; i++) {
         if (match[i] == NONE) {
@@ -37,7 +36,7 @@ bool bfs(const int &nu) {
         q.pop();
         if (node != NONE) {
             for (const int &xt : g[node]) {
-                // if this edge is in matching then match[xt] = node
+                // if match[xt] is not visited path is alternating
                 if (dist[match[xt]] == INF) {
                     dist[match[xt]] = dist[node] + 1;
                     q.emplace(match[xt]);
