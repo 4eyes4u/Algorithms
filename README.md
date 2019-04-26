@@ -79,6 +79,7 @@ Correctness of any implementation is __not guaranteed__.
 ### Strings
 * [KMP](https://github.com/4eyes4u/Algorithms/blob/master/Strings/KMP.cpp) - Knuth-Morris-Pratt algorithm for efficient pattern search in the given text.
 * [Rolling hash](https://github.com/4eyes4u/Algorithms/blob/master/Strings/RollingHash.cpp) - Trivial hashing method for strings. Sub-string hash extraction can be performed in constant time. If collisions occur with high frequency rate, use double or even hash.
+* [Manacher's algorithm](https://github.com/4eyes4u/Algorithms/blob/master/Strings/Manacher.cpp) - Can be used to calculate longest palindromic substring in the given string.
 
 ### Dynamic programming
 * [Longest increasing subsequence](https://github.com/4eyes4u/Algorithms/blob/master/DynamicProgramming/LIS.cpp) - Efficient LIS implementation.
