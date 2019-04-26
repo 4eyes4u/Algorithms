@@ -19,8 +19,8 @@ Correctness of any implementation is __not guaranteed__.
 * [Prim's algorithm](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Prim.cpp) - Algorithm used for calculating minimum spanning tree of the graph. Relies on greedy strategy.
 * [Bellman-Ford MCMF](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/MCMF.cpp) - Algorithm used for calculating minimal-cost-maximum-flow. Effective on bipartite graph.
 * [SPFA](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/SPFA.cpp) - Single-source-shortest-path algorithm based on Bellman-Ford algorithm.
-* [Hopcroft-Karp](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/HopcroftKarp.cpp) - Optimal bipartite matching.
-* [Hierholzer](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Hierholzer.cpp) - Algorithm for fiding Eulerian path in a graph.
+* [Hopcroft-Karp algorithm](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/HopcroftKarp.cpp) - Optimal bipartite matching.
+* [Hierholzer algorithm](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Hierholzer.cpp) - Algorithm for fiding Eulerian path in a graph.
 * [Topological sort](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/TopoSort.cpp) - Kahn's algorithm for topological sort of a DAG.
 * [Transitive closure](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/TransitiveClosure.cpp) - Floyd-Warshall algorithm used for calculating transitive closure of the graph.
 * [Heavy-light decomposition](https://github.com/4eyes4u/Algorithms/blob/master/Graphs/Tree/HLD.cpp) - Decomposition of the tree in chains of nodes such that traversal between any pair of nodes never use more than O(logN) chains.
@@ -62,7 +62,7 @@ Correctness of any implementation is __not guaranteed__.
 * [Matrix library](https://github.com/4eyes4u/Algorithms/blob/master/Math/LinearAlgebra/Matrix.cpp) - Library for basic matrix operations such as addition, multiplication and power.
 #### Number theory
 * [Euclidean's algorithm](https://github.com/4eyes4u/Algorithms/blob/master/Math/NumberTheory/Euclidean.cpp) - Finding greatest common divisor (gcd) of two numbers. C++ has native `__gcd` support.
-* [Fast pow](https://github.com/4eyes4u/Algorithms/blob/master/Math/NumberTheory/ExponentialBySquaring.cpp) - Performing power in logarithmic time by applying squaring. Can be used to find modular inverse when moduo is prime number.
+* [Fast power](https://github.com/4eyes4u/Algorithms/blob/master/Math/NumberTheory/ExponentialBySquaring.cpp) - Performing power in logarithmic time by applying squaring. Can be used to find modular inverse when moduo is prime number.
 * [Sieve of Eratoshenes](https://github.com/4eyes4u/Algorithms/blob/master/Math/NumberTheory/SieveOfEratoshenes.cpp) - Finding primes up to given upper bound. Theoretically opimal implementation. Augmentation is peformed, so that prime factorization can be done in logarithmic time.
 #### Miscellaneous
 * [FFT](https://github.com/4eyes4u/Algorithms/blob/master/Math/FFT.cpp) - Fast Fourier transform in iterative variant. Almost fully optimized. Additional improvement can be made if manual operations are peformed in small sub-problems.
