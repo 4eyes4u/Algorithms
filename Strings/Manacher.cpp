@@ -19,11 +19,11 @@ pair<int, int> Manacher(const string &s, string &pal) {
 
     vector<int> dp(2*n + 1, 0);
     int center = 0, r = 0;
-    for (int i = 1; i < 2*n + 1; i++) {
+    for (int i = 1; i <= 2*n; i++) {
         int mirror_i = 2*center - i;
         if (r > i)
             dp[i] = min(r - i, dp[mirror_i]);
-        while (aux[i + 1 + dp[i]] == aux[i - 1 - dp[i]])
+        while (i + 1 + dp[i] <= 2*n && aux[i + 1 + dp[i]] == aux[i - 1 - dp[i]])
             dp[i]++;
         if (i + dp[i] > r) {
             center = i;
@@ -32,7 +32,7 @@ pair<int, int> Manacher(const string &s, string &pal) {
     }
 
     int pal_len = 0, pal_center = 0;
-    for (int i = 0; i < 2*n + 1; i++) {
+    for (int i = 0; i <= 2*n; i++) {
         if (dp[i] > pal_len) {
             pal_len = dp[i];
             pal_center = i;
