@@ -1,7 +1,7 @@
 /*
-    Name: Jarvis march
+    Name: Graham scan
 
-    Time complexity: O(N * h)
+    Time complexity: O(N * logN)
     Space complexity: O(N)
 */
 
@@ -21,25 +21,28 @@ struct Point {
     }
 };
 
-std::vector<Point> JarvisMarch(std::vector<Point> pts) {
-    std::vector<Point> hull;
-    
+std::vector<Point> GrahamScan(std::vector<Point> pts) {
     std::swap(pts[0],
               *std::min_element(pts.begin(),
                                 pts.end(),
                                 [](const Point &p, const Point &q) {
                                     return p.x < q.x || p.x == q.x && p.y < q.y;
                                 }));
-    do {
-        hull.emplace_back(pts[0]);
-        std::swap(pts[0],
-                  *std::min_element(pts.begin() + 1,
-                                    pts.end(),
-                                    [pts](const Point &p, const Point &q) {
-                                        return Point::cross_product(pts[0], p, q) > 0;
-                                    }));
+    std::sort(pts.begin() + 1, pts.end(),
+              [pts](const Point &p, const Point &q) {
+                  return Point::cross_product(pts[0], p, q) > 0;
+              });
+            
+    std::vector<Point> hull;
+    for (Point &pt : pts) {
+        while (hull.size() >= 2 &&
+               Point::cross_product(hull[hull.size() - 2], hull[hull.size() - 1], pt) <= 0) {
+            
+            hull.pop_back();
+        }
+
+        hull.emplace_back(pt);
     }
-    while (pts[0].x != hull[0].x || pts[0].y != hull[0].y);
 
     return hull;
 }
@@ -52,7 +55,7 @@ int main() {
         std::cin >> pt.x >> pt.y;
     }
 
-    auto hull = JarvisMarch(pts);
+    auto hull = GrahamScan(pts);
     for (Point &pt : hull) {
         std::cout << pt << std::endl;
     }
