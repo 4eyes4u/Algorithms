@@ -21,10 +21,14 @@ pair<int, int> Manacher(const string &s, string &pal) {
     int center = 0, r = 0;
     for (int i = 1; i <= 2*n; i++) {
         int mirror_i = 2*center - i;
-        if (r > i)
+        if (r > i) {
             dp[i] = min(r - i, dp[mirror_i]);
-        while (i + 1 + dp[i] <= 2*n && aux[i + 1 + dp[i]] == aux[i - 1 - dp[i]])
+        }
+        while (i + 1 + dp[i] <= 2*n &&
+               aux[i + 1 + dp[i]] == aux[i - 1 - dp[i]]) {
+
             dp[i]++;
+        }
         if (i + dp[i] > r) {
             center = i;
             r = i + dp[i];
