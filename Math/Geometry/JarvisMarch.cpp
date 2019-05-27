@@ -14,11 +14,11 @@ struct Point {
     friend std::ostream& operator << (std::ostream &strm, const Point &P) {
         return strm << "Point=[" << P.x << ", " << P.y << "]";
     }
-};
 
-long long cross_product(Point O, Point A, Point B) {
-    return 1ll * ((A.x - O.x)*(B.y - O.y) - (B.x - O.x)*(A.y - O.y));
-}
+    static long long cross_product(Point O, Point A, Point B) {
+        return 1ll * ((A.x - O.x)*(B.y - O.y) - (B.x - O.x)*(A.y - O.y));
+    }
+};
 
 std::vector<Point> JarvisMarch(std::vector<Point> pts) {
     std::vector<Point> hull;
@@ -35,7 +35,7 @@ std::vector<Point> JarvisMarch(std::vector<Point> pts) {
                   *std::min_element(pts.begin() + 1,
                                     pts.end(),
                                     [pts](const Point &p, const Point &q) {
-                                        return cross_product(pts[0], p, q) > 0;
+                                        return Point::cross_product(pts[0], p, q) > 0;
                                     }));
     }
     while (pts[0].x != hull[0].x || pts[0].y != hull[0].y);
