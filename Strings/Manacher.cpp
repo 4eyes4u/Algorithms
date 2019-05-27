@@ -24,7 +24,7 @@ pair<int, int> Manacher(const string &s, string &pal) {
         if (r > i) {
             dp[i] = min(r - i, dp[mirror_i]);
         }
-        while (i + 1 + dp[i] <= 2*n &&
+        while (i + 1 + dp[i] <= 2*n && i - 1 - dp[i] >= 0 &&
                aux[i + 1 + dp[i]] == aux[i - 1 - dp[i]]) {
 
             dp[i]++;
