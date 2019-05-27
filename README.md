@@ -53,7 +53,9 @@ Correctness of any implementation is __not guaranteed__.
 ### Mathematical algorithms
 #### Geometry
 * [Closest pair of points](https://github.com/4eyes4u/Algorithms/blob/master/Math/Geometry/ClosestPairOfPoints.cpp) - Finding two poinst that are closest in the Cartesian plane. Very well optimized.
-* [Convex hull](https://github.com/4eyes4u/Algorithms/blob/master/Math/Geometry/ConvexHull.cpp) - Andrew's monotone chain convex hull algorithm. Can be used for fiding only upper/lower envelope of points easily as well as any other specified part of hull.
+* [Andrew's algorithm](https://github.com/4eyes4u/Algorithms/blob/master/Math/Geometry/Andrew.cpp) - Andrew's monotone chain convex hull algorithm. Can be used for fiding only upper/lower envelope of points easily as well as any other specified part of hull.
+* [Graham scan](https://github.com/4eyes4u/Algorithms/blob/master/Math/Geometry/GrahamScan.cpp) - Algorithm for finding convex hull.
+* [Jarvis march](https://github.com/4eyes4u/Algorithms/blob/master/Math/Geometry/JarvisMarch.cpp) - Algorithm for finding convex hull.
 * [Is point in polygon?](https://github.com/4eyes4u/Algorithms/blob/master/Math/Geometry/PointInConvexPolygon.cpp) - Determining if given point is in the given convex polygon by applying binary search.
 * [Segment inersection](https://github.com/4eyes4u/Algorithms/blob/master/Math/Geometry/SegmentIntersection.cpp) - Checking if two line segments inersect in cartesian plane.
 #### Linear algebra
