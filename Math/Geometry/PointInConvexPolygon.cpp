@@ -9,8 +9,6 @@
 */
 
 #include <bits/stdc++.h>
-#define x first
-#define y second
 using namespace std;
 
 const int N = 1e5 + 10;
