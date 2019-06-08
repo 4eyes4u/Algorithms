@@ -28,8 +28,7 @@ void strong_connect(int v) {
         g[w].onstack = false;
         scc[n_scc].emplace_back(w);
         g[w].in = n_scc;
-    }
-    while (v != w);
+    } while (v != w);
 }
 
 void dfs(int v) {
